@@ -3,7 +3,9 @@ import { TrustBadges } from "@/components/sections/TrustBadges"
 import { AboutSection } from "@/components/sections/AboutSection"
 import { ProductsSection } from "@/components/sections/ProductsSection"
 import { ServicesSection } from "@/components/sections/ServicesSection"
+import { IndustriesWeServe } from "@/components/sections/IndustriesWeServe"
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs"
+import { InstitutionalBuyers } from "@/components/sections/InstitutionalBuyers"
 import { ExportProcess } from "@/components/sections/ExportProcess"
 import { GlobalMarkets } from "@/components/sections/GlobalMarkets"
 import { Gallery } from "@/components/sections/Gallery"
@@ -20,7 +22,9 @@ export default function HomePage() {
       <AboutSection />
       <ProductsSection />
       <ServicesSection />
+      <IndustriesWeServe />
       <WhyChooseUs />
+      <InstitutionalBuyers />
       <ExportProcess />
       <GlobalMarkets />
       <Gallery />

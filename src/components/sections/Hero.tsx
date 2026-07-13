@@ -72,8 +72,8 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.8 }}
-            className="text-sm sm:text-base text-white/90 max-w-md mb-4 sm:mb-8 font-light"
-            style={{ lineHeight: 1.7, textShadow: "0 1px 12px rgba(0,0,0,1), 0 0 40px rgba(0,0,0,0.6)" }}
+            className="text-sm sm:text-base text-white max-w-lg mb-5 sm:mb-9 font-light"
+            style={{ lineHeight: 1.7, textShadow: "0 1px 16px rgba(0,0,0,1), 0 0 50px rgba(0,0,0,0.9), 0 0 100px rgba(0,0,0,0.5)" }}
           >
             Premium gold supply to refineries, bullion dealers
             <br className="hidden sm:block" />

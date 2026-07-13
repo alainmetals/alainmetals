@@ -5,20 +5,35 @@ import { ScrollReveal } from "@/components/ScrollReveal"
 import { OptimizedImage } from "@/components/OptimizedImage"
 import { company, images } from "@/lib/siteData"
 
+const productOptions = ["Gold Bars", "Gold Nuggets", "Gold Dust"]
+const quantityOptions = ["1 – 10 kg", "10 – 50 kg", "50 – 100 kg", "100+ kg"]
+
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
+    product: "",
+    quantity: "",
+    destination: "",
     message: "",
   })
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Trade Inquiry: ${formData.name} - ${company.shortName}`)
+    const subject = encodeURIComponent(
+      `RFQ: ${formData.product || "Gold"} ${formData.quantity || ""} - ${formData.name} - ${company.shortName}`
+    )
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\n\nMessage:\n${formData.message}`
+      `REQUEST FOR QUOTATION\n\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Company: ${formData.company}\n\n` +
+      `Product: ${formData.product}\n` +
+      `Quantity: ${formData.quantity}\n` +
+      `Destination: ${formData.destination}\n\n` +
+      `Additional Details:\n${formData.message}`
     )
     window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`
     setSubmitted(true)
@@ -49,21 +64,21 @@ export function ContactSection() {
                 <div className="flex items-center gap-2 sm:gap-4 mb-5 sm:mb-10">
                   <div className="gold-divider" />
                   <span className="editorial-caption text-gold/70 text-[9px] sm:text-[10px]">
-                    Contact
+                    Request for Quotation
                   </span>
                 </div>
               </ScrollReveal>
 
               <ScrollReveal delay={0.1}>
                 <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-4 sm:mb-6" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
-                  Initiate a{" "}
-                  <span className="text-gradient-gold">Conversation</span>
+                  Start Your{" "}
+                  <span className="text-gradient-gold">RFQ</span>
                 </h2>
               </ScrollReveal>
 
               <ScrollReveal delay={0.15}>
                 <p className="editorial-subhead text-white/55 max-w-sm mb-6 sm:mb-10">
-                  Direct inquiries from institutional buyers and verified trading partners.
+                  Submit your requirements. We respond within 24 hours with indicative pricing and availability.
                 </p>
               </ScrollReveal>
 
@@ -100,17 +115,17 @@ export function ContactSection() {
                       </svg>
                     </div>
                     <h3 className="text-lg sm:text-xl font-serif text-white mb-3">
-                      Inquiry Submitted
+                      RFQ Submitted
                     </h3>
                     <p className="text-white/45 text-[13px] sm:text-sm font-light">
-                      Thank you for reaching out. Our team will respond promptly.
+                      Thank you for your inquiry. Our trading desk will respond within 24 hours.
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                       <div>
-                        <label htmlFor="name" className="editorial-caption text-white/40 block mb-2.5 sm:mb-3 text-[9px] sm:text-[10px]">
+                        <label htmlFor="name" className="editorial-caption text-white/40 block mb-2.5 text-[9px] sm:text-[10px]">
                           Full Name *
                         </label>
                         <input
@@ -119,12 +134,12 @@ export function ContactSection() {
                           required
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 sm:pb-3 text-white text-[13px] sm:text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500"
+                          className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 text-white text-[13px] sm:text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500"
                           placeholder="Your full name"
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="editorial-caption text-white/40 block mb-2.5 sm:mb-3 text-[9px] sm:text-[10px]">
+                        <label htmlFor="email" className="editorial-caption text-white/40 block mb-2.5 text-[9px] sm:text-[10px]">
                           Email Address *
                         </label>
                         <input
@@ -133,38 +148,88 @@ export function ContactSection() {
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 sm:pb-3 text-white text-[13px] sm:text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500"
+                          className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 text-white text-[13px] sm:text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500"
                           placeholder="corporate@domain.com"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="company-contact" className="editorial-caption text-white/40 block mb-2.5 sm:mb-3 text-[9px] sm:text-[10px]">
-                        Company / Organisation
+                      <label htmlFor="company-rfq" className="editorial-caption text-white/40 block mb-2.5 text-[9px] sm:text-[10px]">
+                        Company / Organisation *
                       </label>
                       <input
                         type="text"
-                        id="company-contact"
+                        id="company-rfq"
+                        required
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 sm:pb-3 text-white text-[13px] sm:text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500"
+                        className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 text-white text-[13px] sm:text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500"
                         placeholder="Your company name"
                       />
                     </div>
 
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                      <div>
+                        <label htmlFor="product" className="editorial-caption text-white/40 block mb-2.5 text-[9px] sm:text-[10px]">
+                          Product Interest *
+                        </label>
+                        <select
+                          id="product"
+                          required
+                          value={formData.product}
+                          onChange={(e) => setFormData({ ...formData, product: e.target.value })}
+                          className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 text-white text-[13px] sm:text-sm focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500 appearance-none cursor-pointer"
+                        >
+                          <option value="" className="bg-black text-white/40">Select product</option>
+                          {productOptions.map((opt) => (
+                            <option key={opt} value={opt} className="bg-black text-white">{opt}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <label htmlFor="quantity" className="editorial-caption text-white/40 block mb-2.5 text-[9px] sm:text-[10px]">
+                          Estimated Quantity
+                        </label>
+                        <select
+                          id="quantity"
+                          value={formData.quantity}
+                          onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
+                          className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 text-white text-[13px] sm:text-sm focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500 appearance-none cursor-pointer"
+                        >
+                          <option value="" className="bg-black text-white/40">Select range</option>
+                          {quantityOptions.map((opt) => (
+                            <option key={opt} value={opt} className="bg-black text-white">{opt}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
                     <div>
-                      <label htmlFor="message-contact" className="editorial-caption text-white/40 block mb-2.5 sm:mb-3 text-[9px] sm:text-[10px]">
-                        Message *
+                      <label htmlFor="destination" className="editorial-caption text-white/40 block mb-2.5 text-[9px] sm:text-[10px]">
+                        Delivery Destination
+                      </label>
+                      <input
+                        type="text"
+                        id="destination"
+                        value={formData.destination}
+                        onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
+                        className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 text-white text-[13px] sm:text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500"
+                        placeholder="City, Country"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="message-rfq" className="editorial-caption text-white/40 block mb-2.5 text-[9px] sm:text-[10px]">
+                        Additional Requirements
                       </label>
                       <textarea
-                        id="message-contact"
-                        required
-                        rows={4}
+                        id="message-rfq"
+                        rows={3}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 sm:pb-3 text-white text-[13px] sm:text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500 resize-none"
-                        placeholder="Describe your requirements..."
+                        className="w-full bg-transparent border-b border-gold/[0.1] pb-2.5 text-white text-[13px] sm:text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 focus:shadow-[0_1px_0_0_rgba(212,175,55,0.6)] transition-all duration-500 resize-none"
+                        placeholder="Purity requirements, timeline, documentation needs..."
                       />
                     </div>
 
@@ -173,7 +238,7 @@ export function ContactSection() {
                         type="submit"
                         className="group relative px-8 sm:px-10 py-3.5 sm:py-4 bg-gold text-black text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] overflow-hidden hover:bg-gold-light transition-all duration-500 cursor-pointer w-full sm:w-auto"
                       >
-                        <span className="relative z-10">Submit Inquiry</span>
+                        <span className="relative z-10">Submit RFQ</span>
                         <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700" />
                       </button>
                     </div>
