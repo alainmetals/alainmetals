@@ -13,9 +13,9 @@ export function AboutSection() {
       <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[60vh] lg:min-h-[70vh]">
           <div className="lg:col-span-5 relative flex items-center">
-            <div className="px-5 sm:px-10 lg:px-16 py-10 sm:py-16 lg:py-24">
+            <div className="px-5 sm:px-10 lg:px-16 py-8 sm:py-14 lg:py-20">
               <ScrollReveal>
-                <div className="flex items-center gap-2 sm:gap-4 mb-5 sm:mb-10">
+                <div className="flex items-center gap-2 sm:gap-4 mb-3 sm:mb-6">
                   <div className="gold-divider" />
                   <span className="editorial-caption text-gold/70">
                     About the Company
@@ -24,7 +24,7 @@ export function AboutSection() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.1}>
-                <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-4 sm:mb-8" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
+                <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-3 sm:mb-6" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
                   An East African
                   <br />
                   Leader in
@@ -34,7 +34,7 @@ export function AboutSection() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.2}>
-                <p className="editorial-subhead text-white/60 max-w-md mb-5 sm:mb-10">
+                <p className="editorial-subhead text-white/60 max-w-md mb-4 sm:mb-8">
                   Through our sourcing network, we supply gold to international
                   refineries, bullion dealers, banks and institutional buyers worldwide.
                 </p>

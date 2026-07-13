@@ -14,12 +14,12 @@ const docIcons = [
 
 export function CertificatesDocs() {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 relative overflow-hidden bg-black">
+    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-black">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-        <ScrollReveal className="text-center mb-16">
+        <ScrollReveal className="text-center mb-12">
           <span className="inline-block text-[11px] tracking-[0.3em] uppercase text-gold mb-5 font-medium">
             Documentation
           </span>

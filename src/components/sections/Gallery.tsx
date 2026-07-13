@@ -25,7 +25,7 @@ export function Gallery() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-5 sm:mb-12 lg:mb-16" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
+            <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-4 sm:mb-8 lg:mb-12" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
               A Glimpse Into <span className="text-gradient-gold">Our Operations</span>
             </h2>
           </ScrollReveal>

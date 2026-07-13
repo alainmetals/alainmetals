@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export function WhyBuyersChooseUs() {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 relative overflow-hidden bg-black">
+    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-black">
       <div className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-l from-gold/[0.015] to-transparent pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />

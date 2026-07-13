@@ -23,7 +23,7 @@ export function ServicesSection() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.1}>
-                <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-4 sm:mb-8" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
+                <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-3 sm:mb-6" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
                   Pan-African{" "}
                   <span className="text-gradient-gold">Trade Services</span>
                 </h2>

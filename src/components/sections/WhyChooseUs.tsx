@@ -24,7 +24,7 @@ export function WhyChooseUs() {
       <div className="relative z-10 w-full section-pad-lg">
         <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
           <ScrollReveal>
-            <div className="flex items-center gap-2 sm:gap-4 mb-5 sm:mb-12">
+            <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-10">
               <div className="gold-divider" />
               <span className="editorial-caption text-gold/70">
                 Why Choose Us
@@ -35,7 +35,7 @@ export function WhyChooseUs() {
           <div className="max-w-4xl">
             <ScrollReveal delay={0.15}>
               <blockquote>
-                <p className="font-serif font-light leading-[1.1] text-white mb-4 sm:mb-10" style={{ fontSize: "clamp(1.5rem, 4.5vw, 4.5rem)" }}>
+                <p className="font-serif font-light leading-[1.1] text-white mb-3 sm:mb-8" style={{ fontSize: "clamp(1.5rem, 4.5vw, 4.5rem)" }}>
                   Setting the{" "}
                   <span className="text-gradient-gold">standard</span>
                   {" "}in gold trade{" "}
@@ -45,11 +45,11 @@ export function WhyChooseUs() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.3}>
-              <div className="w-10 sm:w-16 h-px bg-gold/30 mb-5 sm:mb-8" />
+              <div className="w-10 sm:w-16 h-px bg-gold/30 mb-4 sm:mb-6" />
             </ScrollReveal>
 
             <ScrollReveal delay={0.4}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-12 mb-6 sm:mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 lg:gap-12 mb-5 sm:mb-10">
                 {[
                   "Sourcing network across East Africa with established partner relationships",
                   "OECD Due Diligence Guidance and applicable regulatory compliance",

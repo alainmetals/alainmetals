@@ -26,13 +26,13 @@ export function ProductsSection() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-5 sm:mb-12 lg:mb-20 max-w-3xl" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
+            <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-4 sm:mb-10 lg:mb-16 max-w-3xl" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
               Premium{" "}
               <span className="text-gradient-gold">Gold Products</span>
             </h2>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-6 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-4 items-start">
             <div className="lg:col-span-5 order-2 lg:order-1">
               <div className="space-y-0">
                 {products.map((p, i) => (
@@ -78,7 +78,7 @@ export function ProductsSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.5 }}
-                  className="mt-10 space-y-6"
+                  className="mt-6 space-y-6"
                 >
                   <p className="editorial-subhead text-white/60 max-w-md">
                     {product.description}

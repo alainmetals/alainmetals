@@ -26,25 +26,98 @@ export function GlobalMarkets() {
             </h2>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
-            <p className="editorial-subhead text-white/60 max-w-lg mb-6 sm:mb-10">
-              From East Africa to the world&apos;s leading precious metals hubs.
-            </p>
-          </ScrollReveal>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 items-start">
+            {/* Text + market list */}
+            <div className="lg:col-span-4 order-2 lg:order-1">
+              <ScrollReveal delay={0.2}>
+                <p className="editorial-subhead text-white/60 max-w-sm mb-5 sm:mb-8">
+                  From East Africa to the world&apos;s leading precious metals hubs.
+                </p>
+              </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {markets.map((market, index) => (
-              <ScrollReveal key={market.name} delay={0.3 + index * 0.04}>
-                <div className="flex items-center gap-4 py-4 sm:py-5 border-b border-gold/[0.08] group hover:border-gold/20 transition-colors duration-500">
-                  <span className="text-gold/60 text-sm shrink-0 group-hover:text-gold/90 transition-colors duration-500">
-                    {market.flag}
-                  </span>
-                  <span className="text-white/70 text-sm sm:text-base group-hover:text-white/95 transition-colors duration-500 font-light">
-                    {market.name}
-                  </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-0">
+                {markets.map((market, index) => (
+                  <ScrollReveal key={market.name} delay={0.3 + index * 0.03}>
+                    <div className="flex items-center gap-3 py-3 border-b border-gold/[0.08] group hover:border-gold/20 transition-colors duration-500">
+                      <span className="text-gold/60 text-xs shrink-0 group-hover:text-gold/90 transition-colors duration-500 w-5 text-center font-medium">
+                        {market.flag}
+                      </span>
+                      <span className="text-white/70 text-sm group-hover:text-white/95 transition-colors duration-500 font-light">
+                        {market.name}
+                      </span>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
+
+            {/* SVG World Map */}
+            <div className="lg:col-span-8 order-1 lg:order-2">
+              <ScrollReveal direction="right" delay={0.15}>
+                <div className="relative w-full bg-charcoal/20 border border-gold/[0.08] p-3 sm:p-5 lg:p-6 aspect-[4/3] sm:aspect-[3/2] lg:aspect-[2/1]">
+                  <svg viewBox="0 0 1000 500" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="1000" height="500" fill="none" />
+
+                    {/* Grid */}
+                    <g opacity="0.1">
+                      {[100,200,300,400,500,600,700,800,900].map(x => (
+                        <line key={x} x1={x} y1={30} x2={x} y2={470} stroke="#D4AF37" strokeWidth="0.3" />
+                      ))}
+                      {[60,120,180,240,300,360,420].map(y => (
+                        <line key={y} x1={30} y1={y} x2={970} y2={y} stroke="#D4AF37" strokeWidth="0.3" />
+                      ))}
+                    </g>
+
+                    {/* Latitude ellipses */}
+                    <ellipse cx="500" cy="250" rx="420" ry="180" fill="none" stroke="#D4AF37" strokeWidth="0.4" opacity="0.12" />
+                    <ellipse cx="500" cy="250" rx="310" ry="135" fill="none" stroke="#D4AF37" strokeWidth="0.3" opacity="0.08" />
+
+                    {/* Africa */}
+                    <path d="M460,140 L480,120 L510,115 L530,125 L545,140 L555,160 L560,190 L565,220 L570,260 L560,300 L540,340 L520,370 L500,390 L480,370 L460,340 L445,300 L440,260 L445,220 L450,180 Z" fill="none" stroke="#D4AF37" strokeWidth="1.2" opacity="0.4" />
+                    {/* Europe */}
+                    <path d="M440,80 L460,70 L490,75 L520,80 L540,90 L550,105 L545,120 L530,130 L510,125 L490,120 L470,115 L450,105 L440,90 Z" fill="none" stroke="#D4AF37" strokeWidth="1" opacity="0.35" />
+                    {/* Asia */}
+                    <path d="M550,80 L590,70 L640,75 L700,85 L750,100 L780,130 L790,170 L780,210 L750,240 L710,260 L670,270 L630,265 L600,250 L570,230 L555,200 L550,160 L548,120 Z" fill="none" stroke="#D4AF37" strokeWidth="1" opacity="0.35" />
+                    {/* Americas */}
+                    <path d="M200,80 L230,90 L250,120 L260,160 L270,200 L280,240 L270,280 L250,320 L230,360 L210,400 L190,420 L180,400 L185,360 L190,320 L195,280 L200,240 L195,200 L190,160 L192,120 Z" fill="none" stroke="#D4AF37" strokeWidth="1" opacity="0.35" />
+                    {/* Australia */}
+                    <path d="M720,340 L760,335 L800,340 L820,360 L815,385 L790,400 L760,405 L735,395 L720,375 L718,355 Z" fill="none" stroke="#D4AF37" strokeWidth="0.8" opacity="0.3" />
+
+                    {/* Market dots - Europe */}
+                    <circle cx="480" cy="95" r="4" fill="#D4AF37" opacity="0.7" />
+                    <circle cx="500" cy="100" r="3" fill="#D4AF37" opacity="0.6" />
+                    <circle cx="470" cy="110" r="3" fill="#D4AF37" opacity="0.6" />
+                    {/* Market dots - Asia/Middle East */}
+                    <circle cx="590" cy="140" r="4" fill="#D4AF37" opacity="0.7" />
+                    <circle cx="610" cy="155" r="3" fill="#D4AF37" opacity="0.6" />
+                    <circle cx="640" cy="130" r="3" fill="#D4AF37" opacity="0.6" />
+                    {/* Market dots - Americas */}
+                    <circle cx="230" cy="130" r="4" fill="#D4AF37" opacity="0.7" />
+                    <circle cx="250" cy="150" r="3" fill="#D4AF37" opacity="0.6" />
+                    {/* Market dots - Asia Pacific */}
+                    <circle cx="740" cy="170" r="3" fill="#D4AF37" opacity="0.6" />
+                    <circle cx="760" cy="360" r="3" fill="#D4AF37" opacity="0.5" />
+
+                    {/* Tanzania - center, large */}
+                    <circle cx="510" cy="260" r="6" fill="#D4AF37" />
+                    <circle cx="510" cy="260" r="14" fill="#D4AF37" opacity="0.25" />
+                    <circle cx="510" cy="260" r="24" fill="#D4AF37" opacity="0.1" />
+                    <circle cx="510" cy="260" r="36" fill="#D4AF37" opacity="0.04" />
+
+                    {/* Connection lines */}
+                    <line x1="510" y1="260" x2="480" y2="95" stroke="#D4AF37" strokeWidth="0.7" opacity="0.3" strokeDasharray="5,5" />
+                    <line x1="510" y1="260" x2="590" y2="140" stroke="#D4AF37" strokeWidth="0.7" opacity="0.3" strokeDasharray="5,5" />
+                    <line x1="510" y1="260" x2="230" y2="130" stroke="#D4AF37" strokeWidth="0.7" opacity="0.3" strokeDasharray="5,5" />
+                    <line x1="510" y1="260" x2="740" y2="170" stroke="#D4AF37" strokeWidth="0.7" opacity="0.3" strokeDasharray="5,5" />
+                    <line x1="510" y1="260" x2="760" y2="360" stroke="#D4AF37" strokeWidth="0.5" opacity="0.25" strokeDasharray="5,5" />
+
+                    <text x="510" y="298" fill="#D4AF37" fontSize="10" textAnchor="middle" fontWeight="600" fontFamily="Geist, sans-serif" letterSpacing="0.2em" opacity="0.9">
+                      TANZANIA
+                    </text>
+                  </svg>
                 </div>
               </ScrollReveal>
-            ))}
+            </div>
           </div>
         </div>
       </div>

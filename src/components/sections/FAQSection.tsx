@@ -26,7 +26,7 @@ export function FAQSection() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <h2 className="font-serif font-light tracking-[-0.03em] text-white text-center mb-6 sm:mb-12 lg:mb-16" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
+            <h2 className="font-serif font-light tracking-[-0.03em] text-white text-center mb-5 sm:mb-10 lg:mb-14" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
               Frequently Asked{" "}
               <span className="text-gradient-gold">Questions</span>
             </h2>

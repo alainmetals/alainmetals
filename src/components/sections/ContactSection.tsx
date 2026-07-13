@@ -29,9 +29,9 @@ export function ContactSection() {
       <div className="section-rule" />
 
       <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[70vh] lg:min-h-[80vh]">
-          <div className="lg:col-span-7 relative order-2 lg:order-1">
-            <div className="relative h-[35vh] sm:h-[40vh] lg:h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[60vh] lg:min-h-[70vh]">
+          <div className="lg:col-span-6 relative order-2 lg:order-1">
+            <div className="relative h-[30vh] sm:h-[35vh] lg:h-full">
               <OptimizedImage
                 src={images.contact}
                 alt="Luxury corporate headquarters"
@@ -43,7 +43,7 @@ export function ContactSection() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 order-1 lg:order-2 flex items-center">
+          <div className="lg:col-span-6 order-1 lg:order-2 flex items-center">
             <div className="px-5 sm:px-10 lg:px-16 py-10 sm:py-16 lg:py-24 w-full">
               <ScrollReveal>
                 <div className="flex items-center gap-2 sm:gap-4 mb-5 sm:mb-10">
