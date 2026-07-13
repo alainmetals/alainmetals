@@ -32,14 +32,14 @@ export function ProductsSection() {
             </h2>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-4 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-3 items-start">
             <div className="lg:col-span-5 order-2 lg:order-1">
               <div className="space-y-0">
                 {products.map((p, i) => (
                   <ScrollReveal key={p.title} delay={i * 0.08}>
                     <button
                       onClick={() => setActiveIndex(i)}
-                      className={`w-full text-left py-5 sm:py-8 border-b border-gold/[0.06] transition-all duration-700 group cursor-pointer ${
+                      className={`w-full text-left py-4 sm:py-7 border-b border-gold/[0.06] transition-all duration-700 group cursor-pointer ${
                         i === activeIndex ? "opacity-100" : "opacity-40 hover:opacity-70"
                       }`}
                     >

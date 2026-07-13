@@ -27,7 +27,7 @@ const stats = [
 
 export function TrustBadges() {
   return (
-    <section className="py-6 sm:py-14 lg:py-16 bg-black border-y border-gold/[0.06]">
+    <section className="py-5 sm:py-11 lg:py-13 bg-black border-y border-gold/[0.06]">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
         <ScrollReveal>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-0">

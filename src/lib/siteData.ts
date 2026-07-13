@@ -127,30 +127,40 @@ export const timelineSteps: TimelineStep[] = [
   {
     step: 1,
     title: "Inquiry & Preliminary Proposal",
+    summary:
+      "Submit your requirements. We respond with availability, pricing and proposed terms.",
     description:
       "Submit your requirements through our contact channel. We respond with a preliminary proposal including product availability, indicative pricing and proposed terms based on your specifications.",
   },
   {
     step: 2,
     title: "Due Diligence & Agreement",
+    summary:
+      "Counterparty verification and a formal sale and purchase agreement.",
     description:
       "We conduct counterparty due diligence and share corporate documentation. Where mutually agreed, a sale and purchase agreement is prepared outlining specifications, quantities, pricing and delivery terms.",
   },
   {
     step: 3,
     title: "Verification & Quality Assurance",
+    summary:
+      "Independent third-party assaying and weight verification before shipment.",
     description:
       "Independent assaying is conducted by a third-party laboratory. Assay certificates and weight verification reports are shared with the buyer for confirmation before shipment.",
   },
   {
     step: 4,
     title: "Payment & Logistics",
+    summary:
+      "Payment through agreed channels. Customs, security and freight coordination.",
     description:
       "Payment is processed through agreed banking channels. Export logistics including customs clearance, security and freight coordination are initiated.",
   },
   {
     step: 5,
     title: "Delivery & Settlement",
+    summary:
+      "Insured shipment with tracking. Final settlement upon buyer acceptance.",
     description:
       "Goods are shipped to the designated destination with tracking and insurance. Final settlement is completed upon delivery and buyer acceptance per agreed terms.",
   },

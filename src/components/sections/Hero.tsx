@@ -30,12 +30,12 @@ export function Hero() {
         />
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
 
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
-      <div className="absolute top-[35%] sm:top-[40%] left-0 right-0 bottom-0 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none" />
+      <div className="absolute top-[30%] sm:top-[35%] left-0 right-0 bottom-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
 
       <div className="absolute z-10 w-full max-w-[1400px] mx-auto px-5 sm:px-10 lg:px-16" style={{ top: "28%", transform: "translateY(-50%)" }}>
         <div className="max-w-4xl">
@@ -72,8 +72,8 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.8 }}
-            className="text-sm sm:text-base text-white/80 max-w-lg mb-4 sm:mb-8 font-light leading-relaxed"
-            style={{ textShadow: "0 1px 10px rgba(0,0,0,0.9)" }}
+            className="text-sm sm:text-base text-white/90 max-w-md mb-4 sm:mb-8 font-light"
+            style={{ lineHeight: 1.7, textShadow: "0 1px 12px rgba(0,0,0,1), 0 0 40px rgba(0,0,0,0.6)" }}
           >
             Premium gold supply to refineries, bullion dealers
             <br className="hidden sm:block" />
