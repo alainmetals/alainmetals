@@ -3,7 +3,8 @@ import { Geist, Geist_Mono, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
-import { TradeDeskAssistant } from "@/components/TradeDeskAssistant"
+import { TradeAssistant } from "@/components/TradeAssistant"
+import { WhatsAppButton } from "@/components/WhatsAppButton"
 import { BackToTop } from "@/components/BackToTop"
 import { LoadingScreen } from "@/components/LoadingScreen"
 import { company } from "@/lib/siteData"
@@ -127,7 +128,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <TradeDeskAssistant />
+        <TradeAssistant />
+        <WhatsAppButton />
         <BackToTop />
       </body>
     </html>

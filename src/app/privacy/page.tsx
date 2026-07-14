@@ -28,13 +28,13 @@ export default function PrivacyPage() {
             <div>
               <h2 className="text-white font-serif text-lg mb-3">1. Information We Collect</h2>
               <p className="mb-3">
-                When you submit an inquiry through our Trade Desk Assistant or contact form, we collect:
+                When you submit an inquiry through our Trade Assistant or contact form, we collect:
               </p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Company name, registration number and website</li>
                 <li>Contact name, email, phone and position</li>
-                <li>Commodity interest, quantity, destination and timeline</li>
-                <li>Buyer classification and budget range</li>
+                <li>Client type and country</li>
+                <li>Commodity interest and quantity</li>
                 <li>UTM parameters, page URL and timestamp</li>
               </ul>
             </div>
@@ -43,8 +43,8 @@ export default function PrivacyPage() {
               <h2 className="text-white font-serif text-lg mb-3">2. How We Use Your Information</h2>
               <p className="mb-3">We use your information to:</p>
               <ul className="list-disc list-inside space-y-1 ml-4">
-                <li>Process and respond to your RFQ inquiry</li>
-                <li>Qualify your trading requirements</li>
+                <li>Process and respond to your inquiry</li>
+                <li>Qualify your requirements</li>
                 <li>Communicate regarding your inquiry</li>
                 <li>Improve our services</li>
               </ul>

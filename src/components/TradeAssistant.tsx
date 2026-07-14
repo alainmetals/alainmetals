@@ -14,7 +14,7 @@ type Step =
   | "contact"
   | "completed"
 
-interface RFQData {
+interface QualificationData {
   inquiryType: string
   commodity: string
   quantity: string
@@ -26,8 +26,10 @@ interface RFQData {
   message: string
 }
 
-const INQUIRY_TYPES = ["Buy", "Sell", "Source", "General Enquiry", "Not Sure"] as const
-const COMMODITIES = ["Gold", "Silver", "Copper", "Tanzanite", "Diamonds", "Gemstones", "Strategic Minerals", "Other"] as const
+const STORAGE_KEY = "ta_progress"
+
+const INQUIRY_TYPES = ["Buy", "Sell", "Source", "Partnership", "General Enquiry", "Prefer to Discuss"] as const
+const COMMODITIES = ["Gold", "Silver", "Copper", "Tanzanite", "Diamonds", "Gemstones", "Strategic Minerals", "Other", "Prefer to Discuss"] as const
 const QUANTITIES = ["Sample", "Small", "Medium", "Large", "Long-term", "Not Sure"] as const
 const BUYER_TYPES = ["Individual", "Company", "Investor", "Trader", "Miner", "Jewellery Business", "Other"] as const
 
@@ -43,46 +45,79 @@ const COUNTRIES = [
 ]
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const PHONE_REGEX = /^\+?[\d\s\-()]{7,}$/
 
-function generateRFQRef(): string {
-  const now = new Date()
-  const yr = now.getFullYear().toString().slice(-2)
-  const mo = (now.getMonth() + 1).toString().padStart(2, "0")
-  const rnd = Math.random().toString(36).substring(2, 7).toUpperCase()
-  return `AA-${yr}${mo}-${rnd}`
+function getInitialData(): QualificationData {
+  const empty: QualificationData = {
+    inquiryType: "", commodity: "", quantity: "", buyerType: "",
+    country: "", name: "", phone: "", email: "", message: "",
+  }
+  if (typeof window === "undefined") return empty
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return empty
+    const saved = JSON.parse(raw) as QualificationData
+    return saved.name ? saved : empty
+  } catch {
+    return empty
+  }
 }
 
-function buildWhatsAppMessage(data: RFQData, ref: string): string {
+function saveProgress(data: QualificationData) {
+  if (typeof window === "undefined") return
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+  } catch {}
+}
+
+function clearSaved() {
+  if (typeof window === "undefined") return
+  try {
+    localStorage.removeItem(STORAGE_KEY)
+  } catch {}
+}
+
+function trackEvent(name: string, params?: Record<string, string>) {
+  if (typeof window === "undefined") return
+  try {
+    if (window.gtag) {
+      window.gtag("event", name, params)
+    }
+  } catch {}
+}
+
+function buildWhatsAppMessage(data: QualificationData): string {
   const lines = [
-    `RFQ Reference: ${ref}`,
+    "New Client Inquiry",
     "",
-    `Inquiry: ${data.inquiryType}`,
+    `Need: ${data.inquiryType}`,
     `Commodity: ${data.commodity}`,
     `Quantity: ${data.quantity}`,
-    `Buyer Type: ${data.buyerType}`,
+    `Client Type: ${data.buyerType}`,
     `Country: ${data.country}`,
     `Name: ${data.name}`,
   ]
   if (data.phone) lines.push(`Phone: ${data.phone}`)
   if (data.email) lines.push(`Email: ${data.email}`)
-  if (data.message) lines.push("", `Message: ${data.message}`)
+  if (data.message) lines.push("", `Note: ${data.message}`)
   return lines.join("\n")
 }
 
-export function TradeDeskAssistant() {
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void
+  }
+}
+
+export function TradeAssistant() {
   const [isOpen, setIsOpen] = useState(false)
   const [step, setStep] = useState<Step>("welcome")
-  const [data, setData] = useState<RFQData>({
-    inquiryType: "", commodity: "", quantity: "", buyerType: "",
-    country: "", name: "", phone: "", email: "", message: "",
-  })
-  const [rfqRef, setRfqRef] = useState("")
+  const [data, setData] = useState<QualificationData>(getInitialData)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [showTooltip, setShowTooltip] = useState(false)
   const [countrySearch, setCountrySearch] = useState("")
   const contentRef = useRef<HTMLDivElement>(null)
   const countryInputRef = useRef<HTMLInputElement>(null)
-  const formStartedAt = useRef(0)
 
   useEffect(() => {
     if (contentRef.current) contentRef.current.scrollTop = 0
@@ -94,11 +129,17 @@ export function TradeDeskAssistant() {
     }
   }, [step])
 
+  useEffect(() => {
+    if (step !== "welcome" && step !== "completed") {
+      saveProgress(data)
+    }
+  }, [data, step])
+
   const advanceStep = useCallback((next: Step) => {
     setTimeout(() => setStep(next), 400)
   }, [])
 
-  const handleChipSelect = (field: keyof RFQData, value: string, next: Step) => {
+  const handleChipSelect = (field: keyof QualificationData, value: string, next: Step) => {
     setErrors({})
     setData((p) => ({ ...p, [field]: value }))
     advanceStep(next)
@@ -115,24 +156,41 @@ export function TradeDeskAssistant() {
   }, [countrySearch])
 
   const handleSubmit = () => {
-    const ref = generateRFQRef()
-    setRfqRef(ref)
+    trackEvent("assistant_complete", {
+      inquiry_type: data.inquiryType,
+      commodity: data.commodity,
+      buyer_type: data.buyerType,
+      country: data.country,
+    })
     advanceStep("completed")
   }
 
   const handleRestart = () => {
+    clearSaved()
     setIsOpen(false)
     setStep("welcome")
     setData({ inquiryType: "", commodity: "", quantity: "", buyerType: "", country: "", name: "", phone: "", email: "", message: "" })
-    setRfqRef("")
     setErrors({})
     setCountrySearch("")
-    formStartedAt.current = 0
+  }
+
+  const handleOpen = () => {
+    trackEvent("assistant_open")
+    setIsOpen(true)
+    setShowTooltip(false)
+  }
+
+  const handleClose = () => {
+    setIsOpen(false)
   }
 
   const openWhatsApp = () => {
-    if (!rfqRef) return
-    const msg = buildWhatsAppMessage(data, rfqRef)
+    trackEvent("whatsapp_click", {
+      inquiry_type: data.inquiryType,
+      commodity: data.commodity,
+    })
+    clearSaved()
+    const msg = buildWhatsAppMessage(data)
     const url = `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(msg)}`
     window.open(url, "_blank", "noopener,noreferrer")
   }
@@ -147,24 +205,21 @@ export function TradeDeskAssistant() {
           <div className="space-y-5">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-                <span className="text-gold font-serif text-sm font-semibold">AI</span>
+                <span className="text-gold font-serif text-sm font-semibold">A</span>
               </div>
               <div>
-                <p className="text-white/90 text-sm font-medium">Trade Desk</p>
+                <p className="text-white/90 text-sm font-medium">Trade Assistant</p>
                 <p className="text-white/40 text-xs">AL AIN METALS</p>
               </div>
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
-              Get a quote in under 60 seconds. Tap to start — we handle the rest on WhatsApp.
+              Tell us what you need and we will connect you with the right team on WhatsApp.
             </p>
             <button
-              onClick={() => {
-                formStartedAt.current = Date.now()
-                advanceStep("inquiryType")
-              }}
+              onClick={() => advanceStep("inquiryType")}
               className="w-full py-3 bg-gold text-black text-xs font-semibold uppercase tracking-[0.2em] hover:bg-gold-light transition-colors duration-300 cursor-pointer"
             >
-              Start RFQ
+              Get Started
             </button>
             <div className="flex items-center gap-2 pt-1">
               <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" aria-hidden="true" />
@@ -255,10 +310,10 @@ export function TradeDeskAssistant() {
             <p className="text-white/50 text-xs uppercase tracking-wider mb-1" aria-live="polite">Step 5 of 6</p>
             <p className="text-white/80 text-sm font-medium">Your country</p>
             <div>
-              <label htmlFor="td-country-search" className="sr-only">Search countries</label>
+              <label htmlFor="ta-country-search" className="sr-only">Search countries</label>
               <input
                 ref={countryInputRef}
-                id="td-country-search"
+                id="ta-country-search"
                 type="text"
                 value={countrySearch}
                 onChange={(e) => setCountrySearch(e.target.value)}
@@ -301,10 +356,10 @@ export function TradeDeskAssistant() {
             <p className="text-white/50 text-xs uppercase tracking-wider mb-1" aria-live="polite">Step 6 of 6</p>
             <p className="text-white/80 text-sm font-medium">How do we reach you?</p>
             <div>
-              <label htmlFor="td-name" className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">
+              <label htmlFor="ta-name" className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">
                 Name <span className="text-red-400">*</span>
               </label>
-              <input id="td-name" type="text" required aria-required="true" aria-invalid={!!errors.name}
+              <input id="ta-name" type="text" required aria-required="true" aria-invalid={!!errors.name}
                 value={data.name} onChange={(e) => { setData((p) => ({ ...p, name: e.target.value })); setErrors({}) }}
                 className="w-full bg-transparent border-b border-white/10 pb-2 text-white text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 transition-all duration-300"
                 placeholder="Your name"
@@ -312,51 +367,54 @@ export function TradeDeskAssistant() {
               {errors.name && <p className="text-red-400 text-xs mt-1" role="alert">{errors.name}</p>}
             </div>
             <div>
-              <label htmlFor="td-phone" className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">
+              <label htmlFor="ta-phone" className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">
                 Phone <span className="text-white/30">(or email below)</span>
               </label>
-              <input id="td-phone" type="tel" value={data.phone}
-                onChange={(e) => setData((p) => ({ ...p, phone: e.target.value }))}
+              <input id="ta-phone" type="tel" value={data.phone}
+                onChange={(e) => { setData((p) => ({ ...p, phone: e.target.value })); setErrors({}) }}
                 className="w-full bg-transparent border-b border-white/10 pb-2 text-white text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 transition-all duration-300"
                 placeholder="+1 (000) 000-0000"
               />
+              {errors.phone && <p className="text-red-400 text-xs mt-1" role="alert">{errors.phone}</p>}
             </div>
             <div>
-              <label htmlFor="td-email" className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">
+              <label htmlFor="ta-email" className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">
                 Email <span className="text-white/30">(or phone above)</span>
               </label>
-              <input id="td-email" type="email" value={data.email}
-                onChange={(e) => setData((p) => ({ ...p, email: e.target.value }))}
+              <input id="ta-email" type="email" value={data.email}
+                onChange={(e) => { setData((p) => ({ ...p, email: e.target.value })); setErrors({}) }}
                 className="w-full bg-transparent border-b border-white/10 pb-2 text-white text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 transition-all duration-300"
                 placeholder="corporate@domain.com"
               />
-              {errors.contact && <p className="text-red-400 text-xs mt-1" role="alert">{errors.contact}</p>}
+              {errors.email && <p className="text-red-400 text-xs mt-1" role="alert">{errors.email}</p>}
             </div>
             <div>
-              <label htmlFor="td-message" className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">Anything else?</label>
-              <textarea id="td-message" rows={2} value={data.message}
+              <label htmlFor="ta-message" className="text-white/40 text-[10px] uppercase tracking-wider block mb-1.5">Anything else?</label>
+              <textarea id="ta-message" rows={2} value={data.message}
                 onChange={(e) => setData((p) => ({ ...p, message: e.target.value }))}
                 className="w-full bg-transparent border-b border-white/10 pb-2 text-white text-sm placeholder-white/25 focus:outline-none focus:border-gold/60 transition-all duration-300 resize-none"
-                placeholder="Optional — purity, timeline, specs..."
+                placeholder="Optional — specs, timeline, notes..."
               />
             </div>
             <button onClick={() => {
               const errs: Record<string, string> = {}
-              if (!data.name.trim()) errs.name = "Name is required"
-              if (!data.phone.trim() && !data.email.trim()) errs.contact = "Phone or email is required"
-              if (data.email.trim() && !EMAIL_REGEX.test(data.email)) errs.contact = "Invalid email"
+              if (!data.name.trim()) errs.name = "Please enter your name"
+              if (!data.phone.trim() && !data.email.trim()) errs.contact = "Please provide a phone number or email"
+              if (data.phone.trim() && !PHONE_REGEX.test(data.phone)) errs.phone = "Please enter a valid phone number"
+              if (data.email.trim() && !EMAIL_REGEX.test(data.email)) errs.email = "Please enter a valid email address"
               if (Object.keys(errs).length > 0) { setErrors(errs); return }
               handleSubmit()
             }} onKeyDown={(e) => handleKeyDown(e, () => {
               const errs: Record<string, string> = {}
-              if (!data.name.trim()) errs.name = "Name is required"
-              if (!data.phone.trim() && !data.email.trim()) errs.contact = "Phone or email is required"
-              if (data.email.trim() && !EMAIL_REGEX.test(data.email)) errs.contact = "Invalid email"
+              if (!data.name.trim()) errs.name = "Please enter your name"
+              if (!data.phone.trim() && !data.email.trim()) errs.contact = "Please provide a phone number or email"
+              if (data.phone.trim() && !PHONE_REGEX.test(data.phone)) errs.phone = "Please enter a valid phone number"
+              if (data.email.trim() && !EMAIL_REGEX.test(data.email)) errs.email = "Please enter a valid email address"
               if (Object.keys(errs).length > 0) { setErrors(errs); return }
               handleSubmit()
             })}
               className="w-full py-3 bg-gold text-black text-xs font-semibold uppercase tracking-[0.2em] hover:bg-gold-light transition-colors duration-300 cursor-pointer mt-2">
-              Generate RFQ
+              Continue
             </button>
           </div>
         )
@@ -370,13 +428,12 @@ export function TradeDeskAssistant() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <p className="text-white/50 text-[10px] uppercase tracking-[0.3em] mb-1">RFQ Reference</p>
-              <p className="text-gold font-mono text-lg tracking-wider">{rfqRef}</p>
+              <p className="text-white/90 text-sm font-medium">Summary</p>
             </div>
 
             <div className="space-y-2 text-sm">
               <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                <span className="text-white/50 text-xs">Inquiry</span>
+                <span className="text-white/50 text-xs">Need</span>
                 <span className="text-white/80 text-xs">{data.inquiryType}</span>
               </div>
               <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
@@ -388,16 +445,26 @@ export function TradeDeskAssistant() {
                 <span className="text-white/80 text-xs">{data.quantity}</span>
               </div>
               <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
-                <span className="text-white/50 text-xs">Buyer Type</span>
+                <span className="text-white/50 text-xs">Client Type</span>
                 <span className="text-white/80 text-xs">{data.buyerType}</span>
               </div>
               <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
                 <span className="text-white/50 text-xs">Country</span>
                 <span className="text-white/80 text-xs">{data.country}</span>
               </div>
+              <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
+                <span className="text-white/50 text-xs">Name</span>
+                <span className="text-white/80 text-xs">{data.name}</span>
+              </div>
+              {(data.phone || data.email) && (
+                <div className="flex justify-between py-1.5 border-b border-white/[0.04]">
+                  <span className="text-white/50 text-xs">Contact</span>
+                  <span className="text-white/80 text-xs">{data.phone || data.email}</span>
+                </div>
+              )}
               {data.message && (
                 <div className="py-1.5">
-                  <span className="text-white/50 text-xs block mb-1">Message</span>
+                  <span className="text-white/50 text-xs block mb-1">Note</span>
                   <p className="text-white/65 text-xs leading-relaxed">{data.message}</p>
                 </div>
               )}
@@ -412,12 +479,12 @@ export function TradeDeskAssistant() {
             </button>
 
             <p className="text-white/30 text-[10px] text-center leading-relaxed">
-              Our trading desk will respond within 24 hours via WhatsApp.
+              Our team will respond within 24 hours.
             </p>
 
             <button onClick={handleRestart}
               className="w-full py-3 border border-white/10 text-white/50 text-xs uppercase tracking-wider hover:border-white/20 transition-colors duration-300 cursor-pointer">
-              New Inquiry
+              Start Over
             </button>
           </div>
         )
@@ -437,7 +504,7 @@ export function TradeDeskAssistant() {
       <AnimatePresence>
         {!isOpen && (
           <div
-            className="fixed bottom-5 right-5 z-50"
+            className="fixed bottom-20 right-5 sm:bottom-24 sm:right-6 z-50"
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
           >
@@ -446,17 +513,17 @@ export function TradeDeskAssistant() {
                 <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }}
                   className="absolute bottom-14 right-0 z-50 whitespace-nowrap">
                   <div className="bg-charcoal border border-gold/20 px-3 py-2 shadow-lg">
-                    <p className="text-white/80 text-[11px] leading-snug">Trade Desk — Get a quote in 60 seconds</p>
+                    <p className="text-white/80 text-[11px] leading-snug">Trade Assistant — Quick enquiry</p>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
             <motion.button initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0 }}
-              whileHover={{ scale: 1.05 }} onClick={() => { setIsOpen(true); setShowTooltip(false) }}
+              whileHover={{ scale: 1.05 }} onClick={handleOpen}
               className="w-11 h-11 bg-gold rounded-full flex items-center justify-center shadow-lg shadow-gold/20 hover:shadow-gold/30 transition-shadow duration-300"
-              aria-label="Open Trade Desk Assistant">
+              aria-label="Open Trade Assistant">
               <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
             </motion.button>
           </div>
@@ -467,22 +534,22 @@ export function TradeDeskAssistant() {
         {isOpen && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 z-50" onClick={() => setIsOpen(false)} />
+              className="fixed inset-0 bg-black/60 z-50" onClick={handleClose} />
             <motion.div initial={{ opacity: 0, y: 20, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }} transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-50 w-full sm:w-[400px] h-full sm:h-[600px] sm:max-h-[80vh] bg-black border border-white/[0.06] flex flex-col overflow-hidden"
-              role="dialog" aria-label="Trade Desk Assistant" aria-modal="true">
+              role="dialog" aria-label="Trade Assistant" aria-modal="true">
               <div className="px-5 py-4 border-b border-white/[0.06] flex items-center justify-between flex-shrink-0">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-gold/10 border border-gold/30 flex items-center justify-center" aria-hidden="true">
-                    <span className="text-gold font-serif text-xs font-semibold">AI</span>
+                    <span className="text-gold font-serif text-xs font-semibold">A</span>
                   </div>
                   <div>
-                    <p className="text-white/90 text-sm font-medium">Trade Desk</p>
-                    <p className="text-gold/60 text-[10px] uppercase tracking-wider">RFQ Assistant</p>
+                    <p className="text-white/90 text-sm font-medium">Trade Assistant</p>
+                    <p className="text-gold/60 text-[10px] uppercase tracking-wider">AL AIN METALS</p>
                   </div>
                 </div>
-                <button onClick={() => setIsOpen(false)} className="w-8 h-8 flex items-center justify-center text-white/40 hover:text-white/70 transition-colors" aria-label="Close">
+                <button onClick={handleClose} className="w-8 h-8 flex items-center justify-center text-white/40 hover:text-white/70 transition-colors" aria-label="Close">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                   </svg>
