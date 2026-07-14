@@ -57,8 +57,8 @@ export function GlobalMarkets() {
               <ScrollReveal direction="right" delay={0.15}>
                 <div className="relative w-full bg-charcoal/30 border border-gold/[0.12] p-3 sm:p-5 lg:p-6 aspect-[4/3] sm:aspect-[3/2] lg:aspect-[2/1] rounded-3xl overflow-hidden gold-shadow-lg">
                   <OptimizedImage
-                    src="/assets/images/global-map.png"
-                    alt="Global commodity sourcing network across Africa and international markets"
+                    src="/assets/images/global-map-new.png"
+                    alt="Global commodity sourcing network connecting Africa with international markets."
                     fill
                     objectFit="contain"
                     objectPosition="center"

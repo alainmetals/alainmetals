@@ -39,7 +39,6 @@ const footerLinks = [
       { label: "Resource Center", href: "/resources" },
       { label: "Market Insights", href: "/resources?category=market-insights" },
       { label: "Export Guides", href: "/resources?category=export-guides" },
-      { label: "Downloads", href: "/downloads" },
       { label: "All Guides", href: "/guides" },
     ],
   },
