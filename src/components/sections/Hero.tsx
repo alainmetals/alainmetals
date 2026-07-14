@@ -19,43 +19,47 @@ export function Hero() {
   return (
     <section className="relative w-full h-screen overflow-hidden bg-black">
       {/* Desktop background image (lg and above) */}
-      <Image
-        src="/assets/images/desktop.png"
-        alt="African precious metals, gemstones and strategic minerals export company — desktop"
-        fill
-        priority
-        className="object-cover hidden lg:block"
-        style={{ objectPosition: "center 40%" }}
-        sizes="100vw"
-      />
+      <div className="absolute inset-0 z-0 hidden lg:block">
+        <Image
+          src="/assets/images/desktop.png"
+          alt="African precious metals, gemstones and strategic minerals export company — desktop"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          style={{ objectPosition: "center 40%" }}
+        />
+      </div>
 
       {/* Mobile background image (below lg) */}
-      <Image
-        src="/assets/images/mobile.png"
-        alt="African precious metals, gemstones and strategic minerals export company — mobile"
-        fill
-        priority
-        className="object-cover block lg:hidden"
-        style={{ objectPosition: "center 30%" }}
-        sizes="100vw"
-      />
+      <div className="absolute inset-0 z-0 block lg:hidden">
+        <Image
+          src="/assets/images/mobile.png"
+          alt="African precious metals, gemstones and strategic minerals export company — mobile"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          style={{ objectPosition: "center 30%" }}
+        />
+      </div>
 
-      {/* Strong left-to-right dark gradient for text readability */}
+      {/* Left-to-right dark gradient for text readability */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 z-[1]"
         style={{
-          background: "linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.15) 100%)",
+          background: "linear-gradient(90deg, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.65) 45%, rgba(0,0,0,0.20) 100%)",
         }}
       />
 
       {/* Top gradient to separate from navbar */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black/70 via-black/40 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-32 z-[1] bg-gradient-to-b from-black/80 via-black/50 to-transparent" />
 
       {/* Bottom gradient for depth */}
-      <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-1/3 z-[1] bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
       {/* Gold accent line at top */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px z-[2] bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
       {/* Hero content */}
       <div className="relative z-10 w-full h-full flex items-center pt-20 lg:pt-24">
@@ -89,7 +93,7 @@ export function Hero() {
               <span
                 className="block text-white"
                 style={{
-                  textShadow: "0 4px 30px rgba(0,0,0,1), 0 0 80px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.8)",
+                  textShadow: "0 4px 40px rgba(0,0,0,1), 0 0 100px rgba(0,0,0,1), 0 2px 16px rgba(0,0,0,0.95)",
                 }}
               >
                 African
@@ -97,7 +101,7 @@ export function Hero() {
               <span
                 className="block text-gold"
                 style={{
-                  textShadow: "0 4px 30px rgba(0,0,0,1), 0 0 80px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.8)",
+                  textShadow: "0 4px 40px rgba(0,0,0,1), 0 0 100px rgba(0,0,0,1), 0 2px 16px rgba(0,0,0,0.95)",
                 }}
               >
                 Precious Metals,
@@ -105,7 +109,7 @@ export function Hero() {
               <span
                 className="block text-white"
                 style={{
-                  textShadow: "0 4px 30px rgba(0,0,0,1), 0 0 80px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.8)",
+                  textShadow: "0 4px 40px rgba(0,0,0,1), 0 0 100px rgba(0,0,0,1), 0 2px 16px rgba(0,0,0,0.95)",
                 }}
               >
                 Worldwide
@@ -119,7 +123,7 @@ export function Hero() {
               className="text-sm sm:text-base lg:text-lg text-white max-w-2xl mb-10 sm:mb-14 font-light"
               style={{
                 lineHeight: 1.7,
-                textShadow: "0 2px 20px rgba(0,0,0,1), 0 0 60px rgba(0,0,0,0.9), 0 0 100px rgba(0,0,0,0.6)",
+                textShadow: "0 2px 30px rgba(0,0,0,1), 0 0 80px rgba(0,0,0,1), 0 0 120px rgba(0,0,0,0.8)",
               }}
             >
               Premium precious metals, gemstones &amp; strategic minerals

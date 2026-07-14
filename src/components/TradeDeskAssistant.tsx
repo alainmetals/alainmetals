@@ -85,11 +85,6 @@ export function TradeDeskAssistant() {
   const formStartedAt = useRef(0)
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowTooltip(true), 4000)
-    return () => clearTimeout(timer)
-  }, [])
-
-  useEffect(() => {
     if (contentRef.current) contentRef.current.scrollTop = 0
   }, [step])
 
@@ -440,26 +435,31 @@ export function TradeDeskAssistant() {
       />
 
       <AnimatePresence>
-        {!isOpen && showTooltip && (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            className="fixed bottom-24 right-6 z-40">
-            <div className="bg-charcoal border border-gold/20 px-4 py-2.5 shadow-lg max-w-[200px]">
-              <p className="text-white/80 text-xs leading-snug">Trade Desk — Get a quote in 60 seconds</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
         {!isOpen && (
-          <motion.button initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0 }}
-            whileHover={{ scale: 1.05 }} onClick={() => { setIsOpen(true); setShowTooltip(false) }}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gold rounded-full flex items-center justify-center shadow-lg shadow-gold/20 hover:shadow-gold/30 transition-shadow duration-300"
-            aria-label="Open Trade Desk Assistant">
-            <svg className="w-6 h-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-          </motion.button>
+          <div
+            className="fixed bottom-5 right-5 z-50"
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+          >
+            <AnimatePresence>
+              {showTooltip && (
+                <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }}
+                  className="absolute bottom-14 right-0 z-50 whitespace-nowrap">
+                  <div className="bg-charcoal border border-gold/20 px-3 py-2 shadow-lg">
+                    <p className="text-white/80 text-[11px] leading-snug">Trade Desk — Get a quote in 60 seconds</p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <motion.button initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0 }}
+              whileHover={{ scale: 1.05 }} onClick={() => { setIsOpen(true); setShowTooltip(false) }}
+              className="w-11 h-11 bg-gold rounded-full flex items-center justify-center shadow-lg shadow-gold/20 hover:shadow-gold/30 transition-shadow duration-300"
+              aria-label="Open Trade Desk Assistant">
+              <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </motion.button>
+          </div>
         )}
       </AnimatePresence>
 

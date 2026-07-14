@@ -1,6 +1,7 @@
 "use client"
 
 import { ScrollReveal } from "@/components/ScrollReveal"
+import Link from "next/link"
 
 const industries = [
   {
@@ -30,33 +31,6 @@ const industries = [
     title: "Banks & Financial Institutions",
     description: "Reserve-grade gold with full documentation for central bank and institutional portfolios.",
   },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
-    title: "Jewellery Manufacturers",
-    description: "Gold nuggets and dust suitable for manufacturing, casting and artisanal production.",
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-      </svg>
-    ),
-    title: "Commodity Traders",
-    description: "Structured trade finance options and volume pricing for active trading desks.",
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    title: "Institutional Investors",
-    description: "Physical gold holdings for portfolio diversification with secure global logistics.",
-  },
 ]
 
 export function IndustriesWeServe() {
@@ -76,19 +50,30 @@ export function IndustriesWeServe() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <h2
-              className="font-serif font-light tracking-[-0.03em] text-white mb-6 sm:mb-10 lg:mb-14 max-w-3xl"
-              style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}
-            >
-              Industries{" "}
-              <span className="text-gradient-gold">We Serve</span>
-            </h2>
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 sm:mb-10 lg:mb-14">
+              <h2
+                className="font-serif font-light tracking-[-0.03em] text-white max-w-3xl"
+                style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}
+              >
+                Industries{" "}
+                <span className="text-gradient-gold">We Serve</span>
+              </h2>
+              <Link
+                href="/industries"
+                className="group inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] font-medium text-gold/60 hover:text-gold transition-colors duration-300 shrink-0"
+              >
+                View All
+                <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-4">
             {industries.map((industry, index) => (
               <ScrollReveal key={industry.title} delay={0.15 + index * 0.06}>
-                <div className="group p-6 lg:p-7 border border-gold/[0.1] bg-white/[0.02] hover:bg-white/[0.04] hover:border-gold/20 transition-all duration-500 rounded-lg h-full">
+                <div className="group p-6 lg:p-7 border border-gold/[0.1] bg-white/[0.02] hover:bg-white/[0.04] hover:border-gold/20 transition-all duration-500 h-full">
                   <div className="text-gold/40 group-hover:text-gold/70 transition-colors duration-500 mb-4">
                     {industry.icon}
                   </div>

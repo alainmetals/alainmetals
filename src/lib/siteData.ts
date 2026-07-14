@@ -180,52 +180,52 @@ export const services: Service[] = [
   {
     title: "Commodity Sourcing & Procurement",
     description:
-      "We source precious metals, gemstones and strategic minerals through a network of vetted miners, cooperatives and partners across Africa. Our procurement approach supports consistent supply and full traceability.",
+      "Sourcing precious metals, gemstones and strategic minerals through a vetted African network with full traceability.",
   },
   {
     title: "Precious Metals Trading",
     description:
-      "Structured trading in gold, silver and platinum group metals with transparent pricing and settlement through established international banking channels.",
+      "Structured trading in gold, silver and platinum group metals with transparent pricing and international settlement.",
   },
   {
     title: "Gemstone Sourcing",
     description:
-      "Direct sourcing of tanzanite, diamonds, rubies, sapphires, emeralds and other gemstones from African mining regions with full chain-of-custody documentation.",
+      "Direct sourcing of tanzanite, diamonds, rubies and sapphires from African mining regions with chain-of-custody documentation.",
   },
   {
     title: "Strategic Minerals Supply",
     description:
-      "Supply of copper, nickel, cobalt, tantalum, tin and lithium from African sources to global industrial buyers and manufacturers.",
+      "Supply of copper, nickel, cobalt, tantalum, tin and lithium from African sources to global buyers.",
   },
   {
     title: "Independent Assaying & Quality Verification",
     description:
-      "Independent third-party assaying by qualified laboratories. Transparency on purity, weight and valuation before shipment for all precious metals.",
+      "Third-party assaying by qualified laboratories with full transparency on purity, weight and valuation.",
   },
   {
     title: "Gemstone Authentication & Certification",
     description:
-      "Gemstones authenticated and certified by recognised gemological laboratories. Buyers receive detailed grading reports and provenance documentation.",
+      "Gemstones certified by recognised gemological laboratories with detailed grading reports and provenance.",
   },
   {
     title: "Export Documentation",
     description:
-      "End-to-end export management including regulatory documentation, certificates of origin, customs clearance and compliance with applicable export regulations.",
+      "End-to-end export management including certificates of origin, customs clearance and regulatory compliance.",
   },
   {
     title: "Secure Logistics",
     description:
-      "Armoured transport, secure storage and international freight coordination with insurance coverage to the agreed delivery point.",
+      "Armoured transport, secure storage and international freight coordination with insurance to delivery point.",
   },
   {
     title: "Trade Finance Coordination",
     description:
-      "Structured payment processes via international banking channels. We work with buyers to facilitate SBLC, DLC, wire transfers and other standard trade finance instruments.",
+      "Facilitating SBLC, DLC, wire transfers and standard trade finance instruments through international banking channels.",
   },
   {
     title: "Buyer Due Diligence",
     description:
-      "On-ground representation for international buyers including supplier verification, contract negotiation, site visits and inspection coordination.",
+      "On-ground representation including supplier verification, contract negotiation, site visits and inspection coordination.",
   },
 ]
 

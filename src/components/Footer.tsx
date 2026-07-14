@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { useState } from "react"
 import { company } from "@/lib/siteData"
 
 const footerLinks = [
@@ -81,6 +84,42 @@ const complianceBadges = [
   { label: "Licensed Exporter", icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" },
 ]
 
+function FooterAccordion({ group }: { group: typeof footerLinks[0] }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="border-b border-gold/[0.06] lg:border-0">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between py-4 lg:pointer-events-none"
+        aria-expanded={open}
+      >
+        <h3 className="text-gold text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] uppercase font-semibold">
+          {group.title}
+        </h3>
+        <svg
+          className={`w-4 h-4 text-gold/40 lg:hidden transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <ul className={`space-y-2.5 sm:space-y-3 overflow-hidden transition-all duration-300 lg:!h-auto lg:!opacity-100 ${open ? "max-h-96 opacity-100 pb-4" : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100 lg:pb-0"}`}>
+        {group.links.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.href}
+              className="text-white/50 hover:text-gold transition-all duration-300 text-[13px] sm:text-sm hover:translate-x-0.5 inline-block"
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
@@ -90,8 +129,8 @@ export function Footer() {
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
         <div className="py-14 sm:py-16 lg:py-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 sm:gap-10 lg:gap-8">
-            <div className="sm:col-span-2 lg:col-span-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-0 sm:gap-8 lg:gap-8">
+            <div className="sm:col-span-2 lg:col-span-2 pb-6 lg:pb-0">
               <Link href="/" className="flex items-center gap-3 group mb-4">
                 <div className="w-10 h-10 bg-gradient-to-br from-gold to-gold-dark rounded-full flex items-center justify-center shadow-lg shadow-gold/20 shrink-0">
                   <span className="text-black font-bold text-sm">A</span>
@@ -137,23 +176,7 @@ export function Footer() {
             </div>
 
             {footerLinks.map((group) => (
-              <div key={group.title}>
-                <h3 className="text-gold text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] uppercase font-semibold mb-4 sm:mb-5">
-                  {group.title}
-                </h3>
-                <ul className="space-y-2.5 sm:space-y-3">
-                  {group.links.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        className="text-white/50 hover:text-gold transition-all duration-300 text-[13px] sm:text-sm hover:translate-x-0.5 inline-block"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <FooterAccordion key={group.title} group={group} />
             ))}
           </div>
         </div>

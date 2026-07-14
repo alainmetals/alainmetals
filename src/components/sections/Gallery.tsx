@@ -5,9 +5,22 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ScrollReveal } from "@/components/ScrollReveal"
 import { OptimizedImage } from "@/components/OptimizedImage"
 import { galleryImages } from "@/lib/siteData"
+import Link from "next/link"
+
+const PREVIEW_COUNT = 6
+
+const previewLayouts = [
+  "col-span-12 md:col-span-8 aspect-[16/9]",
+  "col-span-12 md:col-span-4 aspect-[3/4]",
+  "col-span-12 md:col-span-6 aspect-[4/3]",
+  "col-span-12 md:col-span-6 aspect-[3/4]",
+  "col-span-12 md:col-span-8 aspect-[16/9]",
+  "col-span-12 md:col-span-4 aspect-[4/3]",
+]
 
 export function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
+  const previewImages = galleryImages.slice(0, PREVIEW_COUNT)
 
   return (
     <section className="bg-black overflow-hidden">
@@ -25,41 +38,42 @@ export function Gallery() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-4 sm:mb-8 lg:mb-12" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
-              A Glimpse Into <span className="text-gradient-gold">Our Operations</span>
-            </h2>
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-12">
+              <h2 className="font-serif font-light tracking-[-0.03em] text-white" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
+                A Glimpse Into <span className="text-gradient-gold">Our Operations</span>
+              </h2>
+              <Link
+                href="/gallery"
+                className="group inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] font-medium text-gold/60 hover:text-gold transition-colors duration-300 shrink-0"
+              >
+                View All
+                <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
           </ScrollReveal>
 
           <div className="grid grid-cols-12 gap-1.5 sm:gap-3 md:gap-4">
-            {galleryImages.map((image, index) => {
-              const layouts = [
-                "col-span-12 md:col-span-8 aspect-[16/9]",
-                "col-span-12 md:col-span-4 aspect-[3/4]",
-                "col-span-12 md:col-span-4 aspect-[4/3]",
-                "col-span-12 md:col-span-8 aspect-[16/9]",
-                "col-span-12 md:col-span-6 aspect-[3/4]",
-                "col-span-12 md:col-span-6 aspect-[4/3]",
-              ]
-              return (
-                <ScrollReveal
-                  key={index}
-                  delay={index * 0.06}
-                  className={layouts[index]}
+            {previewImages.map((image, index) => (
+              <ScrollReveal
+                key={index}
+                delay={index * 0.06}
+                className={previewLayouts[index]}
+              >
+                <button
+                  onClick={() => setSelectedImage(index)}
+                  className="group relative w-full h-full overflow-hidden cursor-pointer"
+                  aria-label={`View ${image.alt}`}
                 >
-                  <button
-                    onClick={() => setSelectedImage(index)}
-                    className="group relative w-full h-full overflow-hidden cursor-pointer"
-                    aria-label={`View ${image.alt}`}
-                  >
-                    <OptimizedImage src={image.src} alt={image.alt} fill />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-700" />
-                    <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-8 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0">
-                      <p className="text-white/80 text-xs font-medium tracking-wide">{image.alt}</p>
-                    </div>
-                  </button>
-                </ScrollReveal>
-              )
-            })}
+                  <OptimizedImage src={image.src} alt={image.alt} fill />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-700" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-8 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0">
+                    <p className="text-white/80 text-xs font-medium tracking-wide">{image.alt}</p>
+                  </div>
+                </button>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </div>
@@ -91,16 +105,16 @@ export function Gallery() {
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
               className="max-w-5xl w-full aspect-video relative overflow-hidden"
             >
-              <OptimizedImage src={galleryImages[selectedImage].src} alt={galleryImages[selectedImage].alt} fill />
+              <OptimizedImage src={previewImages[selectedImage].src} alt={previewImages[selectedImage].alt} fill />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-5 sm:p-8">
                 <p className="text-white/70 text-xs tracking-wider uppercase">
-                  {galleryImages[selectedImage].alt}
+                  {previewImages[selectedImage].alt}
                 </p>
               </div>
             </motion.div>
 
             <div className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2">
-              {galleryImages.map((_, index) => (
+              {previewImages.map((_, index) => (
                 <button
                   key={index}
                   onClick={(e) => {
