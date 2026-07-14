@@ -25,10 +25,7 @@ export function Hero() {
         fill
         priority
         className="object-cover hidden lg:block"
-        style={{
-          objectPosition: "center 40%",
-          transform: "scale(1.15)",
-        }}
+        style={{ objectPosition: "center 40%" }}
         sizes="100vw"
       />
 
@@ -39,10 +36,7 @@ export function Hero() {
         fill
         priority
         className="object-cover block lg:hidden"
-        style={{
-          objectPosition: "center 40%",
-          transform: "scale(1.15)",
-        }}
+        style={{ objectPosition: "center 30%" }}
         sizes="100vw"
       />
 
