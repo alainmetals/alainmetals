@@ -30,47 +30,62 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.alainmetals.com"),
   title: {
-    default: `${company.name} | African Gold Supplier & Precious Metals Trading Company`,
+    default: `${company.name} | African Precious Metals, Gemstones & Strategic Minerals Trading`,
     template: `%s | ${company.shortName}`,
   },
   description:
-    "AL AIN METALS CORPORATION LIMITED is an African precious metals sourcing, trading and export company. Through our sourcing network, we supply gold bars, gold nuggets and gold dust to international refineries, bullion dealers, banks and institutional investors worldwide.",
+    "AL AIN METALS CORPORATION LIMITED is an African precious metals, gemstones and strategic minerals sourcing, trading and export company. Through our sourcing network, we supply gold, silver, platinum group metals, gemstones and industrial minerals to international refineries, jewellers, bullion dealers, banks and institutional buyers worldwide.",
   keywords: [
-    "African gold supplier",
-    "African gold export company",
-    "East Africa gold supplier",
-    "African precious metals trading",
-    "gold trading Africa",
-    "gold bars Africa",
-    "gold nuggets Africa",
-    "gold dust Africa",
-    "international gold supplier",
-    "precious metals Africa",
-    "gold sourcing East Africa",
+    "African precious metals supplier",
+    "African gemstones supplier",
+    "African strategic minerals",
+    "gold supplier Africa",
+    "tanzanite supplier",
+    "rough diamonds Africa",
+    "copper supplier Africa",
+    "cobalt supplier Africa",
+    "precious metals trading Africa",
+    "gemstones trading Africa",
+    "East Africa precious metals",
+    "East Africa gemstones",
     "refinery grade gold Africa",
     "bullion dealers Africa",
-    "institutional gold buying Africa",
-    "gold bars supplier Uganda Kenya Tanzania DRC",
-    "responsible gold sourcing Africa",
+    "jewellery manufacturers supplier",
+    "institutional precious metals buying Africa",
+    "responsible sourcing Africa",
+    "Kimberley Process diamonds",
+    "OECD due diligence minerals",
   ],
   authors: [{ name: company.name }],
   creator: company.name,
   publisher: company.name,
+  alternates: {
+    canonical: "https://www.alainmetals.com",
+  },
   openGraph: {
-    title: `${company.name} | African Gold Supplier & Precious Metals Trading`,
+    title: `${company.name} | African Precious Metals, Gemstones & Strategic Minerals`,
     description:
-      "African precious metals sourcing, trading and export company. Supplying gold bars, nuggets and dust to refineries, bullion dealers, banks and institutional investors worldwide.",
+      "African precious metals, gemstones and strategic minerals sourcing, trading and export company. Supplying gold, silver, platinum, gemstones and industrial minerals to international markets.",
     url: "https://www.alainmetals.com",
     siteName: company.name,
     locale: "en_US",
     type: "website",
     countryName: "Tanzania",
+    images: [
+      {
+        url: "/assets/images/african-precious-metals-gemstones-strategic-minerals.webp",
+        width: 1200,
+        height: 630,
+        alt: "AL AIN METALS CORPORATION LIMITED - African Precious Metals Trading",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${company.shortName} | African Gold Supplier`,
+    title: `${company.shortName} | African Precious Metals, Gemstones & Strategic Minerals`,
     description:
-      "African precious metals sourcing, trading and export company. Supplying gold to international markets.",
+      "African precious metals, gemstones and strategic minerals sourcing, trading and export company.",
+    images: ["/assets/images/african-precious-metals-gemstones-strategic-minerals.webp"],
   },
   robots: {
     index: true,
@@ -86,7 +101,7 @@ export const metadata: Metadata = {
   verification: {
     google: "placeholder",
   },
-  category: "Precious Metals & Mining",
+  category: "Precious Metals, Gemstones & Strategic Minerals",
 }
 
 export default function RootLayout({
@@ -101,7 +116,6 @@ export default function RootLayout({
     >
       <head>
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-        <link rel="canonical" href="https://www.alainmetals.com" />
         <meta name="format-detection" content="telephone=yes" />
         <meta name="geo.region" content="TZ" />
         <meta name="geo.placename" content="Dar es Salaam, Tanzania" />

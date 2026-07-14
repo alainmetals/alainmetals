@@ -3,35 +3,65 @@ import { company } from "@/lib/siteData"
 
 const footerLinks = [
   {
-    title: "Quick Links",
+    title: "Products",
     links: [
-      { label: "About Us", href: "/about" },
-      { label: "Products", href: "/products" },
-      { label: "Services", href: "/services" },
-      { label: "Export Process", href: "/export-process" },
+      { label: "Gold Bars", href: "/products/gold-bars" },
+      { label: "Gold Nuggets", href: "/products/gold-nuggets" },
+      { label: "Tanzanite", href: "/products/tanzanite" },
+      { label: "Diamonds", href: "/products/diamonds" },
+      { label: "Copper", href: "/products/copper" },
+      { label: "All Products", href: "/products" },
+    ],
+  },
+  {
+    title: "Sourcing",
+    links: [
+      { label: "Tanzania", href: "/sourcing/tanzania" },
+      { label: "DRC", href: "/sourcing/drc" },
+      { label: "South Africa", href: "/sourcing/south-africa" },
+      { label: "Ghana", href: "/sourcing/ghana" },
+      { label: "All Countries", href: "/sourcing" },
+    ],
+  },
+  {
+    title: "Destinations",
+    links: [
+      { label: "UAE", href: "/destinations/uae" },
+      { label: "Switzerland", href: "/destinations/switzerland" },
+      { label: "India", href: "/destinations/india" },
+      { label: "United Kingdom", href: "/destinations/united-kingdom" },
+      { label: "All Destinations", href: "/destinations" },
     ],
   },
   {
     title: "Resources",
     links: [
+      { label: "Gold Export Guide", href: "/guides/gold-export-guide" },
+      { label: "OECD Due Diligence", href: "/guides/oecd-due-diligence" },
+      { label: "Kimberley Process", href: "/guides/kimberley-process" },
+      { label: "Trade Finance", href: "/guides/commodity-trade-finance" },
+      { label: "All Guides", href: "/guides" },
+    ],
+  },
+  {
+    title: "Industries",
+    links: [
+      { label: "Refineries", href: "/industries/refineries" },
+      { label: "Bullion Dealers", href: "/industries/bullion-dealers" },
+      { label: "Banks", href: "/industries/banks" },
+      { label: "Jewellery", href: "/industries/jewellery-manufacturers" },
+      { label: "All Industries", href: "/industries" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About Us", href: "/about" },
+      { label: "Services", href: "/services" },
+      { label: "Export Process", href: "/export-process" },
+      { label: "Compliance", href: "/compliance" },
       { label: "FAQ", href: "/faq" },
-      { label: "Compliance", href: "/compliance" },
-      { label: "Sitemap", href: "/sitemap.xml" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Compliance", href: "/compliance" },
-    ],
-  },
-  {
-    title: "Contact",
-    links: [
-      { label: company.phone, href: `tel:${company.phone}` },
-      { label: company.email, href: `mailto:${company.email}` },
+      { label: "Contact", href: "/contact" },
     ],
   },
 ]
@@ -62,14 +92,14 @@ export function Footer() {
                     {company.shortName}
                   </span>
                   <span className="text-[9px] tracking-[0.2em] uppercase text-white/50">
-                    Precious Metals Trading
+                    Precious Metals, Gemstones & Minerals
                   </span>
                 </div>
               </Link>
               <div className="w-10 h-px bg-gradient-to-r from-gold/40 to-transparent mb-4" />
               <p className="text-white/55 text-[13px] leading-relaxed max-w-xs font-light">
                 {company.name} is a Tanzania-based company specialising in the
-                export of gold and precious metals to international markets.
+                export of precious metals, gemstones and strategic minerals to international markets.
               </p>
 
               <div className="flex flex-wrap gap-2 mt-5">
@@ -124,6 +154,9 @@ export function Footer() {
         <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/40 text-[11px] sm:text-xs font-light">
             &copy; {currentYear} {company.name}. All rights reserved.
+          </p>
+          <p className="text-white/30 text-[10px] sm:text-[11px] font-light text-center sm:text-right max-w-lg">
+            Products and commodities are supplied subject to availability, regulatory approvals, applicable laws and commercial agreements.
           </p>
           <div className="flex items-center gap-4 sm:gap-6">
             <p className="text-white/40 text-[10px] sm:text-[11px] tracking-wider">

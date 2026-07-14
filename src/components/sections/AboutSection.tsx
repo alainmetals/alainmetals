@@ -35,8 +35,9 @@ export function AboutSection() {
 
               <ScrollReveal delay={0.2}>
                 <p className="editorial-subhead text-white/60 max-w-md mb-4 sm:mb-8">
-                  Through our sourcing network, we supply gold to international
-                  refineries, bullion dealers, banks and institutional buyers worldwide.
+                  Through our sourcing network, we supply precious metals, gemstones and
+                  strategic minerals to international refineries, jewellers, bullion dealers,
+                  banks and institutional buyers worldwide.
                 </p>
               </ScrollReveal>
 

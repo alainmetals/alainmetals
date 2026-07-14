@@ -3,8 +3,8 @@
 import { useSyncExternalStore } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { OptimizedImage } from "@/components/OptimizedImage"
 import { images } from "@/lib/siteData"
+import Image from "next/image"
 
 function useMounted() {
   return useSyncExternalStore(
@@ -19,36 +19,42 @@ export function Hero() {
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-black">
+      {/* Cinematic background image */}
       <div className="absolute inset-0">
-        <OptimizedImage
+        <Image
           src={images.hero}
-          alt="African gold bars export company"
+          alt="African precious metals, gemstones and strategic minerals export company"
           fill
           priority
-          objectFit="cover"
-          objectPosition="center"
+          className="object-cover"
+          style={{
+            objectPosition: "center 35%",
+            transform: "scale(1.07)",
+          }}
+          sizes="100vw"
         />
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/50" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
-
+      {/* Overlays for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+      <div className="absolute top-[35%] sm:top-[40%] left-0 right-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
 
-      <div className="absolute top-[30%] sm:top-[35%] left-0 right-0 bottom-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
-
-      <div className="absolute z-10 w-full max-w-[1400px] mx-auto px-5 sm:px-10 lg:px-16" style={{ top: "28%", transform: "translateY(-50%)" }}>
-        <div className="max-w-4xl">
+      {/* Hero content */}
+      <div className="relative z-10 w-full h-full flex items-center pt-20 lg:pt-24">
+        <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-10 lg:px-16">
+          <div className="max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
-            className="mb-2 sm:mb-4"
+            className="mb-3 sm:mb-5"
           >
-            <div className="flex items-center gap-2 sm:gap-4 mb-2 sm:mb-3">
+            <div className="flex items-center gap-2 sm:gap-4 mb-3 sm:mb-4">
               <div className="w-6 sm:w-12 h-px bg-gold" />
               <span className="editorial-caption text-gold text-[8px] sm:text-[10px]">
-                East African Precious Metals
+                East African Precious Metals & Gemstones
               </span>
             </div>
           </motion.div>
@@ -57,7 +63,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, delay: 0.5 }}
-            className="font-serif font-light tracking-[-0.03em] mb-2 sm:mb-5"
+            className="font-serif font-light tracking-[-0.03em] mb-4 sm:mb-7"
             style={{
               fontSize: "clamp(2.5rem, 10vw, 8rem)",
               lineHeight: 0.95,
@@ -72,19 +78,19 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.8 }}
-            className="text-sm sm:text-base text-white max-w-lg mb-5 sm:mb-9 font-light"
+            className="text-sm sm:text-base lg:text-lg text-white max-w-2xl mb-8 sm:mb-12 font-light"
             style={{ lineHeight: 1.7, textShadow: "0 1px 16px rgba(0,0,0,1), 0 0 50px rgba(0,0,0,0.9), 0 0 100px rgba(0,0,0,0.5)" }}
           >
-            Premium gold supply to refineries, bullion dealers
+            Premium precious metals, gemstones &amp; strategic minerals
             <br className="hidden sm:block" />
-            and institutional buyers worldwide.
+            for refineries, jewellers and institutional buyers worldwide.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1 }}
-            className="flex flex-col sm:flex-row items-start gap-3 sm:gap-6"
+            className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8"
           >
             <Link
               href="/contact"
@@ -101,9 +107,11 @@ export function Hero() {
               Our Process
             </Link>
           </motion.div>
+          </div>
         </div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={mounted ? { opacity: 1 } : {}}

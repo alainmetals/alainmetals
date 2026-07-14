@@ -4,13 +4,15 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ScrollReveal } from "@/components/ScrollReveal"
 import { OptimizedImage } from "@/components/OptimizedImage"
-import { products, images } from "@/lib/siteData"
+import { productCategories, images } from "@/lib/siteData"
 
 const productImages = [images.products.bars, images.products.nuggets, images.products.dust]
 
+const featuredProducts = productCategories[0].items.slice(0, 3)
+
 export function ProductsSection() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const product = products[activeIndex]
+  const product = featuredProducts[activeIndex]
 
   return (
     <section className="bg-black overflow-hidden">
@@ -28,14 +30,14 @@ export function ProductsSection() {
           <ScrollReveal delay={0.1}>
             <h2 className="font-serif font-light tracking-[-0.03em] text-white mb-4 sm:mb-10 lg:mb-16 max-w-3xl" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)", lineHeight: 0.95 }}>
               Premium{" "}
-              <span className="text-gradient-gold">Gold Products</span>
+              <span className="text-gradient-gold">Precious Metals</span>
             </h2>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-3 items-start">
             <div className="lg:col-span-5 order-2 lg:order-1">
               <div className="space-y-0">
-                {products.map((p, i) => (
+                {featuredProducts.map((p, i) => (
                   <ScrollReveal key={p.title} delay={i * 0.08}>
                     <button
                       onClick={() => setActiveIndex(i)}
@@ -84,15 +86,19 @@ export function ProductsSection() {
                     {product.description}
                   </p>
                   <div className="flex items-center gap-8">
-                    <div>
-                      <span className="editorial-caption text-white/40 block mb-1">Purity</span>
-                      <span className="text-gold/80 text-sm font-medium">{product.purity}</span>
-                    </div>
-                    <div className="w-px h-8 bg-gold/10" />
-                    <div>
-                      <span className="editorial-caption text-white/40 block mb-1">Origin</span>
-                      <span className="text-white/70 text-sm">{product.origin}</span>
-                    </div>
+                    {product.purity && (
+                      <div>
+                        <span className="editorial-caption text-white/40 block mb-1">Purity</span>
+                        <span className="text-gold/80 text-sm font-medium">{product.purity}</span>
+                      </div>
+                    )}
+                    {product.purity && product.origin && <div className="w-px h-8 bg-gold/10" />}
+                    {product.origin && (
+                      <div>
+                        <span className="editorial-caption text-white/40 block mb-1">Origin</span>
+                        <span className="text-white/70 text-sm">{product.origin}</span>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               </AnimatePresence>
