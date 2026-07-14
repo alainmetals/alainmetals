@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PageHero } from "@/components/PageHero"
-import { Breadcrumbs } from "@/components/Breadcrumbs"
 import { CTASection } from "@/components/CTASection"
 import { resourceArticles } from "@/lib/data/resources"
 
