@@ -469,7 +469,6 @@ export const galleryImages = [
 ]
 
 export const images = {
-  hero: "/assets/images/african-precious-metals-gemstones-strategic-minerals.webp",
   about: "/assets/images/trusted-african-gold-trading-company.webp",
   products: {
     bars: "/assets/images/investment-grade-gold-bars.webp",

@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AL AIN METALS CORPORATION LIMITED
 
-## Getting Started
+Corporate marketing and lead-generation website for a Tanzania-based precious metals, gemstones and strategic minerals trading business.
 
-First, run the development server:
+## Technology
+
+- Next.js 16 App Router and React 19
+- TypeScript, Tailwind CSS 4 and Framer Motion
+- Static generation for product, sourcing, destination, industry, guide, resource and trust pages
+- Vercel-compatible contact API using Resend
+
+## Local development
+
+Requires Node.js 20 or newer.
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`. Useful checks:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+npm test
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Contact form configuration
 
-## Learn More
+Create a Resend account, verify the sending domain, and set these values in `.env.local` and in the Vercel project:
 
-To learn more about Next.js, take a look at the following resources:
+- `RESEND_API_KEY`: server-side API key; never expose it as a public variable.
+- `CONTACT_FROM_EMAIL`: sender on the verified domain.
+- `CONTACT_TO_EMAIL`: inbox that receives inquiries.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If these values are absent, the form shows an honest configuration error and directs visitors to the public email address. It never displays a false success state.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Search Console
 
-## Deploy on Vercel
+Set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` only after Google Search Console provides the real token. The verification meta tag is omitted when the value is empty.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content and data
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Company-wide content and contact details live in `src/lib/siteData.ts`. Structured collections live in `src/lib/data/`. Images are in `public/assets/images/`.
+
+English is the only published locale. `src/lib/i18n/` is an incomplete future-language scaffold and is not connected to routing or the page content. Do not advertise French or Arabic support until every route, metadata entry and legal/compliance statement has been professionally translated and reviewed.
+
+## Compliance review
+
+Statements about licences, sourcing, purity, traceability, laboratories, OECD alignment, AML/KYC, export capability and product availability are business claims, not facts established by the software. Before each release, an authorised company or legal reviewer must compare them with current licences, contracts, laboratory arrangements and regulatory requirements. The footer states that supply remains subject to availability, approvals, law and commercial agreements.
+
+## Deployment
+
+The application is configured for Vercel. Add the production environment variables, deploy, then verify the contact form, security headers, sitemap, robots file and representative dynamic pages. Do not commit `.env.local` or provider credentials.

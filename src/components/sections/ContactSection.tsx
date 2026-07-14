@@ -4,12 +4,15 @@ import { useState, FormEvent } from "react"
 import { ScrollReveal } from "@/components/ScrollReveal"
 import { OptimizedImage } from "@/components/OptimizedImage"
 import { company, images } from "@/lib/siteData"
+import { submitContact } from "@/lib/contact"
 
 const productOptions = ["Gold Bars", "Gold Nuggets", "Gold Dust"]
 const quantityOptions = ["1 – 10 kg", "10 – 50 kg", "50 – 100 kg", "100+ kg"]
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState("")
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,23 +23,18 @@ export function ContactSection() {
     message: "",
   })
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(
-      `RFQ: ${formData.product || "Gold"} ${formData.quantity || ""} - ${formData.name} - ${company.shortName}`
-    )
-    const body = encodeURIComponent(
-      `REQUEST FOR QUOTATION\n\n` +
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Company: ${formData.company}\n\n` +
-      `Product: ${formData.product}\n` +
-      `Quantity: ${formData.quantity}\n` +
-      `Destination: ${formData.destination}\n\n` +
-      `Additional Details:\n${formData.message}`
-    )
-    window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`
-    setSubmitted(true)
+    setSubmitting(true)
+    setError("")
+    try {
+      await submitContact({ type: "rfq", ...formData })
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "We could not send your RFQ.")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -123,6 +121,7 @@ export function ContactSection() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                    <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                       <div>
                         <label htmlFor="name" className="editorial-caption text-white/40 block mb-2.5 text-[9px] sm:text-[10px]">
@@ -234,11 +233,13 @@ export function ContactSection() {
                     </div>
 
                     <div className="pt-2">
+                      {error && <p role="alert" className="text-sm text-red-300 mb-4">{error}</p>}
                       <button
                         type="submit"
+                        disabled={submitting}
                         className="group relative px-8 sm:px-10 py-3.5 sm:py-4 bg-gold text-black text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] overflow-hidden hover:bg-gold-light transition-all duration-500 cursor-pointer w-full sm:w-auto"
                       >
-                        <span className="relative z-10">Submit RFQ</span>
+                        <span className="relative z-10">{submitting ? "Sending…" : "Submit RFQ"}</span>
                         <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700" />
                       </button>
                     </div>

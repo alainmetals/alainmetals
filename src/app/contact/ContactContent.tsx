@@ -3,9 +3,12 @@
 import { useState, FormEvent } from "react"
 import { ScrollReveal } from "@/components/ScrollReveal"
 import { company } from "@/lib/siteData"
+import { submitContact } from "@/lib/contact"
 
 export function ContactContent() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState("")
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,14 +17,18 @@ export function ContactContent() {
     message: "",
   })
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Trade Inquiry: ${formData.name} - ${company.shortName}`)
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`
-    )
-    window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`
-    setSubmitted(true)
+    setSubmitting(true)
+    setError("")
+    try {
+      await submitContact({ type: "contact", ...formData })
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "We could not send your inquiry.")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -116,6 +123,7 @@ export function ContactContent() {
                 onSubmit={handleSubmit}
                 className="glass-card rounded-3xl p-7 lg:p-8 space-y-5"
               >
+                <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="name" className="block text-[11px] text-white/70 uppercase tracking-wider mb-2">
@@ -191,11 +199,13 @@ export function ContactContent() {
                   />
                 </div>
 
+                {error && <p role="alert" className="text-sm text-red-300">{error}</p>}
                 <button
                   type="submit"
+                  disabled={submitting}
                   className="w-full px-8 py-3.5 bg-gold text-black font-semibold text-sm uppercase tracking-[0.15em] rounded-sm hover:bg-gold-light transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-gold/30 cursor-pointer"
                 >
-                  Submit Inquiry
+                  {submitting ? "Sending…" : "Submit Inquiry"}
                 </button>
               </form>
             )}

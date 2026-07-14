@@ -3,7 +3,6 @@
 import { useSyncExternalStore } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { images } from "@/lib/siteData"
 import Image from "next/image"
 
 function useMounted() {
@@ -19,21 +18,33 @@ export function Hero() {
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-black">
-      {/* Cinematic background image */}
-      <div className="absolute inset-0">
-        <Image
-          src={images.hero}
-          alt="African precious metals, gemstones and strategic minerals export company"
-          fill
-          priority
-          className="object-cover"
-          style={{
-            objectPosition: "center 40%",
-            transform: "scale(1.15)",
-          }}
-          sizes="100vw"
-        />
-      </div>
+      {/* Desktop background image (lg and above) */}
+      <Image
+        src="/assets/images/desktop.png"
+        alt="African precious metals, gemstones and strategic minerals export company — desktop"
+        fill
+        priority
+        className="object-cover hidden lg:block"
+        style={{
+          objectPosition: "center 40%",
+          transform: "scale(1.15)",
+        }}
+        sizes="100vw"
+      />
+
+      {/* Mobile background image (below lg) */}
+      <Image
+        src="/assets/images/mobile.png"
+        alt="African precious metals, gemstones and strategic minerals export company — mobile"
+        fill
+        priority
+        className="object-cover block lg:hidden"
+        style={{
+          objectPosition: "center 40%",
+          transform: "scale(1.15)",
+        }}
+        sizes="100vw"
+      />
 
       {/* Strong left-to-right dark gradient for text readability */}
       <div

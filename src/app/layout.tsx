@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
-import { WhatsAppButton } from "@/components/WhatsAppButton"
+import { TradeDeskAssistant } from "@/components/TradeDeskAssistant"
 import { BackToTop } from "@/components/BackToTop"
 import { LoadingScreen } from "@/components/LoadingScreen"
 import { company } from "@/lib/siteData"
@@ -98,9 +98,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "placeholder",
-  },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+    : {}),
   category: "Precious Metals, Gemstones & Strategic Minerals",
 }
 
@@ -127,7 +127,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <WhatsAppButton />
+        <TradeDeskAssistant />
         <BackToTop />
       </body>
     </html>
