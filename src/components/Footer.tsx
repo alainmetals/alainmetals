@@ -36,10 +36,10 @@ const footerLinks = [
   {
     title: "Resources",
     links: [
-      { label: "Gold Export Guide", href: "/guides/gold-export-guide" },
-      { label: "OECD Due Diligence", href: "/guides/oecd-due-diligence" },
-      { label: "Kimberley Process", href: "/guides/kimberley-process" },
-      { label: "Trade Finance", href: "/guides/commodity-trade-finance" },
+      { label: "Resource Center", href: "/resources" },
+      { label: "Market Insights", href: "/resources?category=market-insights" },
+      { label: "Export Guides", href: "/resources?category=export-guides" },
+      { label: "Downloads", href: "/downloads" },
       { label: "All Guides", href: "/guides" },
     ],
   },
@@ -51,6 +51,16 @@ const footerLinks = [
       { label: "Banks", href: "/industries/banks" },
       { label: "Jewellery", href: "/industries/jewellery-manufacturers" },
       { label: "All Industries", href: "/industries" },
+    ],
+  },
+  {
+    title: "Trust & Compliance",
+    links: [
+      { label: "Corporate Governance", href: "/trust/corporate-governance" },
+      { label: "Responsible Sourcing", href: "/trust/responsible-sourcing" },
+      { label: "AML / KYC", href: "/trust/aml-kyc" },
+      { label: "ESG & Sustainability", href: "/trust/esg-sustainability" },
+      { label: "All Trust", href: "/trust" },
     ],
   },
   {

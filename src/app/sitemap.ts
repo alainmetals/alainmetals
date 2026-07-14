@@ -4,6 +4,8 @@ import { countryPages } from "@/lib/data/countries"
 import { destinationPages } from "@/lib/data/destinations"
 import { guidePages } from "@/lib/data/guides"
 import { industryPages } from "@/lib/data/industries"
+import { resourceArticles } from "@/lib/data/resources"
+import { trustSections } from "@/lib/data/trust"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.alainmetals.com"
@@ -22,6 +24,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/destinations`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/guides`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/industries`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/resources`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/downloads`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/trust`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ]
 
   const productPages_: MetadataRoute.Sitemap = productPages.map((p) => ({
@@ -59,6 +64,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
+  const resourcePages_: MetadataRoute.Sitemap = resourceArticles.map((r) => ({
+    url: `${baseUrl}/resources/${r.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
+  const trustPages_: MetadataRoute.Sitemap = trustSections.map((t) => ({
+    url: `${baseUrl}/trust/${t.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
   return [
     ...staticPages,
     ...productPages_,
@@ -66,5 +85,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...destinationPages_,
     ...guidePages_,
     ...industryPages_,
+    ...resourcePages_,
+    ...trustPages_,
   ]
 }
