@@ -6,7 +6,7 @@ export const company = {
   tagline: "African Precious Metals, Gemstones & Strategic Minerals",
   phone: "+255 652 979 692",
   phoneDisplay: "+255 652 979 692",
-  email: "info@alainmetals.com",
+  email: "info@alainmetalscorp.com",
   address: "Dar es Salaam, Tanzania",
   whatsapp: "255652979692",
   description:

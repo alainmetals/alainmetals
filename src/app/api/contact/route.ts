@@ -36,7 +36,7 @@ export async function POST(request: Request) {
   if (!apiKey || !recipient || !sender) {
     console.error("Contact email service is not configured.")
     return NextResponse.json(
-      { error: "Online inquiries are temporarily unavailable. Please email info@alainmetals.com directly." },
+      { error: "Online inquiries are temporarily unavailable. Please email info@alainmetalscorp.com directly." },
       { status: 503 },
     )
   }
