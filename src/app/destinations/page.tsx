@@ -8,14 +8,14 @@ import { PageHero } from "@/components/PageHero"
 import { PageJsonLd } from "@/components/PageJsonLd"
 
 export const metadata: Metadata = {
-  title: "Export Destinations | Global Market Reach",
+  title: "Export Destinations | Global Markets | Al Ain Metals Corp",
   description:
-    "We export precious metals, gemstones and strategic minerals to major international markets including UAE, Switzerland, India, China, UK and more.",
-  alternates: { canonical: "https://www.alainmetals.com/destinations" },
+    "We export precious metals, gemstones and strategic minerals to major international markets including UAE, Switzerland, India, China, UK, Turkey and Hong Kong from our East African operations.",
+  alternates: { canonical: "https://alainmetalscorp.com/destinations" },
   openGraph: {
     title: "Export Destinations | AL AIN METALS",
     description: "Global export destinations for African precious metals and minerals.",
-    url: "https://www.alainmetals.com/destinations",
+    url: "https://alainmetalscorp.com/destinations",
     siteName: company.name,
     type: "website",
   },
@@ -28,8 +28,8 @@ export default function DestinationsIndexPage() {
         type="breadcrumb"
         data={{
           items: [
-            { name: "Home", url: "https://www.alainmetals.com" },
-            { name: "Destinations", url: "https://www.alainmetals.com/destinations" },
+            { name: "Home", url: "https://alainmetalscorp.com" },
+            { name: "Destinations", url: "https://alainmetalscorp.com/destinations" },
           ],
         }}
       />

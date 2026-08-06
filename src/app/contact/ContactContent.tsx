@@ -76,7 +76,7 @@ export function ContactContent() {
                   },
                   {
                     label: "Location",
-                    value: company.address,
+                    value: "Dar es Salaam, Tanzania",
                     href: null,
                     icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z",
                   },
@@ -99,6 +99,21 @@ export function ContactContent() {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              <div className="pt-4 border-t border-gold/[0.08]">
+                <h3 className="text-[11px] text-white/70 uppercase tracking-wider mb-3">Address</h3>
+                <address className="not-italic text-white/80 text-sm leading-relaxed font-light space-y-1">
+                  <p>{company.name}</p>
+                  <p>Dar es Salaam</p>
+                  <p>Tanzania</p>
+                </address>
+              </div>
+
+              <div className="pt-4 border-t border-gold/[0.08]">
+                <h3 className="text-[11px] text-white/70 uppercase tracking-wider mb-3">Business Hours</h3>
+                <p className="text-white/80 text-sm font-light">Monday – Friday: 8:00 AM – 6:00 PM (EAT)</p>
+                <p className="text-white/80 text-sm font-light">Saturday: 9:00 AM – 1:00 PM (EAT)</p>
               </div>
             </div>
           </ScrollReveal>
@@ -211,6 +226,25 @@ export function ContactContent() {
             )}
           </ScrollReveal>
         </div>
+
+        <section className="mt-16 lg:mt-20">
+          <h2 className="text-2xl font-semibold text-white mb-8 font-serif text-center">Our Location</h2>
+          <div className="rounded-3xl overflow-hidden border border-gold/[0.08]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.8!2d39.2!3d-6.7924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDcnMzIuNiJTIDM5wrAxMicwMC4wIkU!5e0!3m2!1sen!2stz!4v1234567890"
+              width="100%"
+              height="400"
+              style={{ border: 0, filter: "grayscale(1) invert(1) contrast(0.9)" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Al Ain Metals Corp location in Dar es Salaam, Tanzania"
+            />
+          </div>
+          <p className="text-center text-white/50 text-sm mt-4 font-light">
+            {company.name} — Dar es Salaam, Tanzania — East Africa
+          </p>
+        </section>
       </div>
     </div>
   )

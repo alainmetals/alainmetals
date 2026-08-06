@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const industry = industryPages.find((i) => i.slug === slug)
   if (!industry) return {}
 
-  const url = `https://www.alainmetals.com/industries/${industry.slug}`
+  const url = `https://alainmetalscorp.com/industries/${industry.slug}`
   return {
     title: industry.metaTitle,
     description: industry.metaDescription,
@@ -60,9 +60,9 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         type="breadcrumb"
         data={{
           items: [
-            { name: "Home", url: "https://www.alainmetals.com" },
-            { name: "Industries", url: "https://www.alainmetals.com/industries" },
-            { name: industry.title, url: `https://www.alainmetals.com/industries/${industry.slug}` },
+            { name: "Home", url: "https://alainmetalscorp.com" },
+            { name: "Industries", url: "https://alainmetalscorp.com/industries" },
+            { name: industry.title, url: `https://alainmetalscorp.com/industries/${industry.slug}` },
           ],
         }}
       />

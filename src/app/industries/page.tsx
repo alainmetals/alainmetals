@@ -8,16 +8,30 @@ import { PageHero } from "@/components/PageHero"
 import { PageJsonLd } from "@/components/PageJsonLd"
 
 export const metadata: Metadata = {
-  title: "Industries We Serve | Refineries, Banks, Jewellers & More",
+  title: "Industries We Serve | Refineries, Banks & Jewellers | Al Ain",
   description:
-    "AL AIN METALS serves refineries, bullion dealers, banks, jewellery manufacturers, commodity traders and institutional investors worldwide.",
-  alternates: { canonical: "https://www.alainmetals.com/industries" },
+    "AL AIN METALS serves refineries, bullion dealers, banks, jewellery manufacturers, commodity traders and institutional investors worldwide with African precious metals and minerals.",
+  alternates: { canonical: "https://alainmetalscorp.com/industries" },
   openGraph: {
     title: "Industries We Serve | AL AIN METALS",
     description: "Serving refineries, bullion dealers, banks, jewellers and institutional investors.",
-    url: "https://www.alainmetals.com/industries",
+    url: "https://alainmetalscorp.com/industries",
     siteName: company.name,
     type: "website",
+    images: [
+      {
+        url: "/assets/images/global-commodity-trading.webp",
+        width: 1200,
+        height: 630,
+        alt: "Al Ain Metals Corp - Industries We Serve",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Industries We Serve | AL AIN METALS",
+    description: "Serving refineries, bullion dealers, banks, jewellers and institutional investors.",
+    images: ["/assets/images/global-commodity-trading.webp"],
   },
 }
 
@@ -28,8 +42,8 @@ export default function IndustriesIndexPage() {
         type="breadcrumb"
         data={{
           items: [
-            { name: "Home", url: "https://www.alainmetals.com" },
-            { name: "Industries", url: "https://www.alainmetals.com/industries" },
+            { name: "Home", url: "https://alainmetalscorp.com" },
+            { name: "Industries", url: "https://alainmetalscorp.com/industries" },
           ],
         }}
       />

@@ -43,6 +43,8 @@ const footerLinks = [
       { label: "Market Insights", href: "/resources?category=market-insights" },
       { label: "Export Guides", href: "/resources?category=export-guides" },
       { label: "All Guides", href: "/guides" },
+      { label: "Blog", href: "/blog" },
+      { label: "Testimonials", href: "/testimonials" },
     ],
   },
   {
@@ -149,6 +151,17 @@ export function Footer() {
                 {company.name} is a Tanzania-based company specialising in the
                 export of precious metals, gemstones and strategic minerals to international markets.
               </p>
+
+              <address className="not-italic text-white/60 text-[12px] leading-relaxed mt-4 space-y-1">
+                <p>{company.name}</p>
+                <p>Dar es Salaam, Tanzania</p>
+                <p>
+                  <a href={`tel:${company.phone}`} className="hover:text-gold transition-colors">{company.phoneDisplay}</a>
+                </p>
+                <p>
+                  <a href={`mailto:${company.email}`} className="hover:text-gold transition-colors">{company.email}</a>
+                </p>
+              </address>
 
               <div className="flex flex-wrap gap-2 mt-5">
                 <span className="inline-flex items-center gap-1.5 text-[11px] text-white/50 border border-gold/[0.08] px-2.5 py-1">

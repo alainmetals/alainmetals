@@ -1,15 +1,33 @@
 import type { Metadata } from "next"
 import { ScrollReveal } from "@/components/ScrollReveal"
+import { PageJsonLd } from "@/components/PageJsonLd"
 import { company } from "@/lib/siteData"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: `Privacy policy for ${company.name}. How we collect, use and protect your information.`,
+  title: "Privacy Policy | Al Ain Metals Corp Tanzania",
+  description: `Privacy policy for ${company.name}. Learn how we collect, use and protect your personal information when you use our website and submit inquiries to our precious metals trading desk.`,
+  alternates: {
+    canonical: "https://alainmetalscorp.com/privacy",
+  },
+  openGraph: {
+    title: `Privacy Policy | ${company.shortName}`,
+    description: `Privacy policy for ${company.name}. How we collect, use and protect your information.`,
+    url: "https://alainmetalscorp.com/privacy",
+    siteName: company.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Privacy Policy | ${company.shortName}`,
+    description: `Privacy policy for ${company.name}. How we collect, use and protect your information.`,
+  },
 }
 
 export default function PrivacyPage() {
   return (
-    <section className="bg-black min-h-screen">
+    <>
+      <PageJsonLd type="breadcrumb" data={{ items: [ { name: "Home", url: "https://alainmetalscorp.com" }, { name: "Privacy Policy", url: "https://alainmetalscorp.com/privacy" } ] }} />
+      <section className="bg-black min-h-screen">
       <div className="section-rule" />
       <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-10 py-16 sm:py-24">
         <ScrollReveal>
@@ -89,5 +107,6 @@ export default function PrivacyPage() {
         </ScrollReveal>
       </div>
     </section>
+    </>
   )
 }

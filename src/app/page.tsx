@@ -17,19 +17,45 @@ export default function HomePage() {
   return (
     <>
       <JsonLd />
-      <Hero />
-      <TrustBadges />
-      <AboutSection />
-      <ProductsSection />
-      <ServicesSection />
-      <IndustriesWeServe />
-      <WhyChooseUs />
-      <InstitutionalBuyers />
-      <ExportProcess />
-      <GlobalMarkets />
-      <Gallery />
-      <FAQSection />
-      <ContactSection />
+      <section aria-label="Hero">
+        <Hero />
+      </section>
+      <section aria-label="Trust indicators">
+        <TrustBadges />
+      </section>
+      <section aria-label="About Al Ain Metals">
+        <AboutSection />
+      </section>
+      <section aria-label="Products">
+        <ProductsSection />
+      </section>
+      <section aria-label="Services">
+        <ServicesSection />
+      </section>
+      <section aria-label="Industries we serve">
+        <IndustriesWeServe />
+      </section>
+      <section aria-label="Why choose us">
+        <WhyChooseUs />
+      </section>
+      <section aria-label="Institutional buyers">
+        <InstitutionalBuyers />
+      </section>
+      <section aria-label="Export process">
+        <ExportProcess />
+      </section>
+      <section aria-label="Global markets">
+        <GlobalMarkets />
+      </section>
+      <section aria-label="Gallery">
+        <Gallery />
+      </section>
+      <section aria-label="Frequently asked questions">
+        <FAQSection />
+      </section>
+      <section aria-label="Contact us">
+        <ContactSection />
+      </section>
     </>
   )
 }

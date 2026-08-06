@@ -1,19 +1,20 @@
 import type { Metadata } from "next"
 import { ServicesContent } from "./ServicesContent"
-import { company } from "@/lib/siteData"
+import { PageJsonLd } from "@/components/PageJsonLd"
+import { company, services } from "@/lib/siteData"
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Precious Metals Trading & Export Services | Al Ain Metals",
   description:
-    "Comprehensive precious metals, gemstones and strategic minerals trading and export services including sourcing, logistics, quality verification, trade finance and market advisory.",
+    "Comprehensive precious metals, gemstones and strategic minerals trading and export services including commodity sourcing, logistics, quality verification, trade finance coordination and market advisory from East Africa.",
   alternates: {
-    canonical: "https://www.alainmetals.com/services",
+    canonical: "https://alainmetalscorp.com/services",
   },
   openGraph: {
     title: `Services | ${company.shortName}`,
     description:
       "Comprehensive precious metals, gemstones and strategic minerals trading and export services.",
-    url: "https://www.alainmetals.com/services",
+    url: "https://alainmetalscorp.com/services",
     siteName: company.name,
     type: "website",
     images: [
@@ -34,6 +35,45 @@ export const metadata: Metadata = {
   },
 }
 
+function ServiceSchema() {
+  const baseUrl = "https://alainmetalscorp.com"
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${baseUrl}/services/#service`,
+    serviceType: "Precious Metals Trading & Export Services",
+    provider: {
+      "@type": "Organization",
+      "@id": `${baseUrl}/#organization`,
+      name: company.name,
+      url: baseUrl,
+    },
+    areaServed: { "@type": "Place", name: "Worldwide" },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Precious Metals, Gemstones & Strategic Minerals Services",
+      itemListElement: services.map((s, i) => ({
+        "@type": "Offer",
+        position: i + 1,
+        itemOffered: {
+          "@type": "Service",
+          name: s.title,
+          description: s.description,
+        },
+      })),
+    },
+  }
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+  )
+}
+
 export default function ServicesPage() {
-  return <ServicesContent />
+  return (
+    <>
+      <PageJsonLd type="breadcrumb" data={{ items: [ { name: "Home", url: "https://alainmetalscorp.com" }, { name: "Services", url: "https://alainmetalscorp.com/services" } ] }} />
+      <ServiceSchema />
+      <ServicesContent />
+    </>
+  )
 }

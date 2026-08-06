@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const guide = guidePages.find((g) => g.slug === slug)
   if (!guide) return {}
 
-  const url = `https://www.alainmetals.com/guides/${guide.slug}`
+  const url = `https://alainmetalscorp.com/guides/${guide.slug}`
   return {
     title: guide.metaTitle,
     description: guide.metaDescription,
@@ -52,6 +52,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           title: guide.title,
           description: guide.description,
           image: guide.image,
+          url: `https://alainmetalscorp.com/guides/${guide.slug}`,
           datePublished: new Date().toISOString(),
           dateModified: new Date().toISOString(),
         }}
@@ -60,9 +61,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         type="breadcrumb"
         data={{
           items: [
-            { name: "Home", url: "https://www.alainmetals.com" },
-            { name: "Guides", url: "https://www.alainmetals.com/guides" },
-            { name: guide.title, url: `https://www.alainmetals.com/guides/${guide.slug}` },
+            { name: "Home", url: "https://alainmetalscorp.com" },
+            { name: "Guides", url: "https://alainmetalscorp.com/guides" },
+            { name: guide.title, url: `https://alainmetalscorp.com/guides/${guide.slug}` },
           ],
         }}
       />

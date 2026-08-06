@@ -8,14 +8,14 @@ import { PageHero } from "@/components/PageHero"
 import { PageJsonLd } from "@/components/PageJsonLd"
 
 export const metadata: Metadata = {
-  title: "Products | Precious Metals, Gemstones & Strategic Minerals",
+  title: "Products | Precious Metals & Gemstones | Al Ain Metals Corp",
   description:
     "Explore our full range of African precious metals, gemstones and strategic minerals. Gold bars, nuggets, dust, silver, platinum, tanzanite, diamonds, copper and more.",
-  alternates: { canonical: "https://www.alainmetals.com/products" },
+  alternates: { canonical: "https://alainmetalscorp.com/products" },
   openGraph: {
     title: "Products | AL AIN METALS",
     description: "African precious metals, gemstones and strategic minerals for international buyers.",
-    url: "https://www.alainmetals.com/products",
+    url: "https://alainmetalscorp.com/products",
     siteName: company.name,
     type: "website",
     images: [
@@ -42,8 +42,8 @@ export default function ProductsIndexPage() {
         type="breadcrumb"
         data={{
           items: [
-            { name: "Home", url: "https://www.alainmetals.com" },
-            { name: "Products", url: "https://www.alainmetals.com/products" },
+            { name: "Home", url: "https://alainmetalscorp.com" },
+            { name: "Products", url: "https://alainmetalscorp.com/products" },
           ],
         }}
       />

@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: article.metaTitle,
       description: article.metaDescription,
-      url: `https://www.alainmetals.com/resources/${slug}`,
+      url: `https://alainmetalscorp.com/resources/${slug}`,
       siteName: company.name,
       locale: "en_US",
       type: "article",
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: [company.name],
     },
     alternates: {
-      canonical: `https://www.alainmetals.com/resources/${slug}`,
+      canonical: `https://alainmetalscorp.com/resources/${slug}`,
     },
   }
 }
@@ -52,13 +52,14 @@ export default async function ResourceArticlePage({ params }: Props) {
 
   return (
     <>
+      <PageJsonLd type="breadcrumb" data={{ items: [ { name: "Home", url: "https://alainmetalscorp.com" }, { name: "Resources", url: "https://alainmetalscorp.com/resources" }, { name: article.title, url: `https://alainmetalscorp.com/resources/${slug}` } ] }} />
       <PageJsonLd
         type="article"
         data={{
           title: article.title,
           description: article.description,
           image: article.image,
-          url: `https://www.alainmetals.com/resources/${slug}`,
+          url: `https://alainmetalscorp.com/resources/${slug}`,
           datePublished: article.datePublished,
         }}
       />

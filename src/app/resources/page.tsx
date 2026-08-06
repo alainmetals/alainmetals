@@ -1,28 +1,44 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PageHero } from "@/components/PageHero"
+import { PageJsonLd } from "@/components/PageJsonLd"
 import { CTASection } from "@/components/CTASection"
 import { resourceArticles } from "@/lib/data/resources"
 
 export const metadata: Metadata = {
-  title: "Resource Center | Market Insights, Guides & Industry Reports",
-  description: "Expert market insights, export guides, compliance resources and industry reports for African precious metals, gemstones and strategic minerals.",
+  title: "Resource Center | Market Insights | Al Ain Metals Corp",
+  description: "Expert market insights, export guides, compliance resources and industry reports for African precious metals, gemstones and strategic minerals trading and export.",
   openGraph: {
     title: "Resource Center | AL AIN METALS",
     description: "Expert market insights, export guides, compliance resources and industry reports.",
-    url: "https://alainmetals.com/resources",
+    url: "https://alainmetalscorp.com/resources",
     siteName: "AL AIN METALS CORPORATION LIMITED",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/assets/images/luxury-commodity-trading-headquarters.webp",
+        width: 1200,
+        height: 630,
+        alt: "Al Ain Metals Corp - Resource Center",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Resource Center | AL AIN METALS",
+    description: "Expert market insights, export guides, compliance resources and industry reports.",
+    images: ["/assets/images/luxury-commodity-trading-headquarters.webp"],
   },
   alternates: {
-    canonical: "https://alainmetals.com/resources",
+    canonical: "https://alainmetalscorp.com/resources",
   },
 }
 
 export default function ResourcesPage() {
   return (
     <>
+      <PageJsonLd type="breadcrumb" data={{ items: [ { name: "Home", url: "https://alainmetalscorp.com" }, { name: "Resources", url: "https://alainmetalscorp.com/resources" } ] }} />
       <PageHero
         title="Resource Center"
         subtitle="Expert market insights, export guides, compliance resources and industry reports."

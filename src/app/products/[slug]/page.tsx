@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const product = productPages.find((p) => p.slug === slug)
   if (!product) return {}
 
-  const url = `https://www.alainmetals.com/products/${product.slug}`
+  const url = `https://alainmetalscorp.com/products/${product.slug}`
   return {
     title: product.metaTitle,
     description: product.metaDescription,
@@ -61,9 +61,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         type="breadcrumb"
         data={{
           items: [
-            { name: "Home", url: "https://www.alainmetals.com" },
-            { name: "Products", url: "https://www.alainmetals.com/products" },
-            { name: product.title, url: `https://www.alainmetals.com/products/${product.slug}` },
+            { name: "Home", url: "https://alainmetalscorp.com" },
+            { name: "Products", url: "https://alainmetalscorp.com/products" },
+            { name: product.title, url: `https://alainmetalscorp.com/products/${product.slug}` },
           ],
         }}
       />

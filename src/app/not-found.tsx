@@ -9,9 +9,6 @@ export const metadata: Metadata = {
     index: false,
     follow: true,
   },
-  alternates: {
-    canonical: "https://www.alainmetals.com/404",
-  },
 }
 
 export default function NotFound() {

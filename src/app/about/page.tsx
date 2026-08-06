@@ -1,19 +1,20 @@
 import type { Metadata } from "next"
 import { AboutContent } from "./AboutContent"
+import { PageJsonLd } from "@/components/PageJsonLd"
 import { company } from "@/lib/siteData"
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Al Ain Metals | East African Precious Metals Exporter",
   description:
-    "Learn about AL AIN METALS CORPORATION LIMITED, a trusted Tanzania-based African precious metals, gemstones and strategic minerals exporter serving international markets.",
+    "Learn about AL AIN METALS CORPORATION LIMITED, a trusted Tanzania-based African precious metals, gemstones and strategic minerals exporter serving international refineries, bullion dealers and institutional buyers worldwide.",
   alternates: {
-    canonical: "https://www.alainmetals.com/about",
+    canonical: "https://alainmetalscorp.com/about",
   },
   openGraph: {
     title: `About Us | ${company.shortName}`,
     description:
       "Learn about AL AIN METALS CORPORATION LIMITED, a trusted Tanzania-based African precious metals exporter serving international markets.",
-    url: "https://www.alainmetals.com/about",
+    url: "https://alainmetalscorp.com/about",
     siteName: company.name,
     type: "website",
     images: [
@@ -35,5 +36,10 @@ export const metadata: Metadata = {
 }
 
 export default function AboutPage() {
-  return <AboutContent />
+  return (
+    <>
+      <PageJsonLd type="breadcrumb" data={{ items: [ { name: "Home", url: "https://alainmetalscorp.com" }, { name: "About", url: "https://alainmetalscorp.com/about" } ] }} />
+      <AboutContent />
+    </>
+  )
 }

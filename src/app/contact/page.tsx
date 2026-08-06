@@ -1,19 +1,20 @@
 import type { Metadata } from "next"
 import { ContactContent } from "./ContactContent"
+import { PageJsonLd } from "@/components/PageJsonLd"
 import { company } from "@/lib/siteData"
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact Al Ain Metals Corp | Trading Desk & Inquiries",
   description:
-    "Get in touch with AL AIN METALS CORPORATION LIMITED. Contact our trading desk for precious metals, gemstones and strategic minerals inquiries, quotations and partnership discussions.",
+    "Contact AL AIN METALS CORPORATION LIMITED for precious metals, gemstones and strategic minerals inquiries. Trading desk in Dar es Salaam, Tanzania. Phone, email and online form available.",
   alternates: {
-    canonical: "https://www.alainmetals.com/contact",
+    canonical: "https://alainmetalscorp.com/contact",
   },
   openGraph: {
     title: `Contact | ${company.shortName}`,
     description:
-      "Contact AL AIN METALS for precious metals, gemstones and strategic minerals inquiries.",
-    url: "https://www.alainmetals.com/contact",
+      "Contact AL AIN METALS for precious metals, gemstones and strategic minerals inquiries. Trading desk in Dar es Salaam, Tanzania.",
+    url: "https://alainmetalscorp.com/contact",
     siteName: company.name,
     type: "website",
     images: [
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
         url: "/assets/images/luxury-commodity-trading-headquarters.webp",
         width: 1200,
         height: 630,
-        alt: "AL AIN METALS Contact - Get in Touch",
+        alt: "Al Ain Metals Corp - Contact Our Trading Desk",
       },
     ],
   },
@@ -29,11 +30,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Contact | ${company.shortName}`,
     description:
-      "Contact AL AIN METALS for precious metals, gemstones and strategic minerals inquiries.",
+      "Contact AL AIN METALS for precious metals, gemstones and strategic minerals inquiries. Trading desk in Dar es Salaam, Tanzania.",
     images: ["/assets/images/luxury-commodity-trading-headquarters.webp"],
   },
 }
 
 export default function ContactPage() {
-  return <ContactContent />
+  return (
+    <>
+      <PageJsonLd type="breadcrumb" data={{ items: [ { name: "Home", url: "https://alainmetalscorp.com" }, { name: "Contact", url: "https://alainmetalscorp.com/contact" } ] }} />
+      <ContactContent />
+    </>
+  )
 }

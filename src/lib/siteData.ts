@@ -23,6 +23,7 @@ export const navLinks: NavLink[] = [
   { label: "Services", href: "/services" },
   { label: "Process", href: "/export-process" },
   { label: "Compliance", href: "/compliance" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ]
@@ -37,6 +38,7 @@ export const productCategories: ProductCategory[] = [
           "High-purity refined gold bars cast to international specifications. Suitable for refineries, bullion dealers, central banks and institutional investors.",
         purity: "99.9% – 99.99%",
         origin: "Africa",
+        image: "/assets/images/investment-grade-gold-bars.webp",
       },
       {
         title: "Gold Nuggets",
@@ -44,6 +46,7 @@ export const productCategories: ProductCategory[] = [
           "Natural gold nuggets sourced through vetted artisanal and small-scale mining partners. Sought after by jewellery manufacturers and collectors worldwide.",
         purity: "85% – 95%",
         origin: "Africa",
+        image: "/assets/images/natural-african-gold-nuggets.webp",
       },
       {
         title: "Gold Dust",
@@ -51,6 +54,7 @@ export const productCategories: ProductCategory[] = [
           "Fine gold dust recovered from alluvial deposits. Processed, dried and prepared for export to qualified international refineries.",
         purity: "80% – 92%",
         origin: "Africa",
+        image: "/assets/images/premium-gold-dust-supplier.webp",
       },
       {
         title: "Silver Bullion",
@@ -58,6 +62,7 @@ export const productCategories: ProductCategory[] = [
           "Refined silver bars and bullion products for industrial use, investment and jewellery manufacturing.",
         purity: "99.9%",
         origin: "Africa",
+        image: "/assets/images/premium-silver-bullion.webp",
       },
       {
         title: "Platinum Group Metals",
@@ -65,6 +70,7 @@ export const productCategories: ProductCategory[] = [
           "Platinum, palladium and rhodium sourced upon request for specialised industrial and investment applications.",
         purity: "Per specification",
         origin: "Africa",
+        image: "/assets/images/investment-grade-gold-bars.webp",
       },
     ],
   },
@@ -76,54 +82,63 @@ export const productCategories: ProductCategory[] = [
         description:
           "Rare blue-violet gemstone exclusive to East Africa. Supplied in calibrated and bespoke sizes for luxury jewellers.",
         origin: "Tanzania",
+        image: "/assets/images/premium-tanzanite-gemstones.webp",
       },
       {
         title: "Rough Diamonds",
         description:
           "Uncut diamonds sourced through licensed channels with full Kimberley Process certification.",
         origin: "Africa",
+        image: "/assets/images/certified-diamond-trading.webp",
       },
       {
         title: "Polished Diamonds",
         description:
           "Certified polished diamonds in various cuts and grades for jewellery and investment.",
         origin: "Global",
+        image: "/assets/images/certified-diamond-trading.webp",
       },
       {
         title: "Rubies",
         description:
           "Premium African rubies prized for their deep red colour and exceptional brilliance.",
         origin: "Africa",
+        image: "/assets/images/premium-tanzanite-gemstones.webp",
       },
       {
         title: "Sapphires",
         description:
           "Natural sapphires in blue, yellow and fancy colours sourced from East African deposits.",
         origin: "Africa",
+        image: "/assets/images/premium-tanzanite-gemstones.webp",
       },
       {
         title: "Emeralds",
         description:
           "High-quality emeralds with vivid green colour for luxury jewellery applications.",
         origin: "Africa",
+        image: "/assets/images/premium-tanzanite-gemstones.webp",
       },
       {
         title: "Tsavorite",
         description:
           "Rare green garnet found in East Africa. Valued for its vivid colour and brilliance.",
         origin: "East Africa",
+        image: "/assets/images/premium-tanzanite-gemstones.webp",
       },
       {
         title: "Spinel",
         description:
           "Natural spinel in red, pink and blue hues. An emerging collectors gemstone.",
         origin: "Africa",
+        image: "/assets/images/premium-tanzanite-gemstones.webp",
       },
       {
         title: "Tourmaline",
         description:
           "Multi-coloured tourmaline in paraiba, rubellite and indicolite varieties.",
         origin: "Africa",
+        image: "/assets/images/premium-tanzanite-gemstones.webp",
       },
     ],
   },
@@ -136,6 +151,7 @@ export const productCategories: ProductCategory[] = [
           "Copper cathodes and concentrate for industrial manufacturing and electronics.",
         purity: "99.99%",
         origin: "Africa",
+        image: "/assets/images/strategic-minerals-africa.webp",
       },
       {
         title: "Nickel",
@@ -143,6 +159,7 @@ export const productCategories: ProductCategory[] = [
           "Nickel ore and refined products for stainless steel and battery manufacturing.",
         purity: "Per specification",
         origin: "Africa",
+        image: "/assets/images/strategic-minerals-africa.webp",
       },
       {
         title: "Cobalt",
@@ -150,6 +167,7 @@ export const productCategories: ProductCategory[] = [
           "Cobalt hydroxide and refined cobalt for lithium-ion battery and aerospace industries.",
         purity: "Per specification",
         origin: "Africa",
+        image: "/assets/images/strategic-minerals-africa.webp",
       },
       {
         title: "Tantalum",
@@ -157,6 +175,7 @@ export const productCategories: ProductCategory[] = [
           "Conflict-free tantalum for electronics, capacitors and aerospace applications.",
         purity: "Per specification",
         origin: "Africa",
+        image: "/assets/images/strategic-minerals-africa.webp",
       },
       {
         title: "Tin",
@@ -164,6 +183,7 @@ export const productCategories: ProductCategory[] = [
           "Tin ingots and concentrate for soldering, packaging and industrial applications.",
         purity: "99.9%",
         origin: "Africa",
+        image: "/assets/images/strategic-minerals-africa.webp",
       },
       {
         title: "Lithium",
@@ -171,6 +191,7 @@ export const productCategories: ProductCategory[] = [
           "Lithium products sourced upon request for battery and energy storage industries.",
         purity: "Per specification",
         origin: "Africa",
+        image: "/assets/images/strategic-minerals-africa.webp",
       },
     ],
   },

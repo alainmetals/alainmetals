@@ -7,7 +7,16 @@ import { TradeAssistant } from "@/components/TradeAssistant"
 import { WhatsAppButton } from "@/components/WhatsAppButton"
 import { BackToTop } from "@/components/BackToTop"
 import { LoadingScreen } from "@/components/LoadingScreen"
+import { GoogleAnalytics, GAPageView, WebVitals } from "@/components/Analytics"
 import { company } from "@/lib/siteData"
+
+function Header({ children }: { children: React.ReactNode }) {
+  return (
+    <header id="site-header" role="banner" aria-label="Site header">
+      {children}
+    </header>
+  )
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,18 +38,18 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.alainmetals.com"),
+  metadataBase: new URL("https://alainmetalscorp.com"),
   title: {
-    default: `${company.name} | African Precious Metals, Gemstones & Strategic Minerals Trading`,
-    template: `%s | ${company.shortName}`,
+    default: "Al Ain Metals Corp | East African Precious Metals Trading",
+    template: `%s`,
   },
   description:
-    "AL AIN METALS CORPORATION LIMITED is an African precious metals, gemstones and strategic minerals sourcing, trading and export company. Through our sourcing network, we supply gold, silver, platinum group metals, gemstones and industrial minerals to international refineries, jewellers, bullion dealers, banks and institutional buyers worldwide.",
+    "Al Ain Metals Corporation supplies premium gold, silver, gemstones and strategic minerals from East Africa to refineries, banks and institutional buyers worldwide. OECD-aligned due diligence and responsible sourcing.",
   keywords: [
-    "African precious metals supplier",
-    "African gemstones supplier",
-    "African strategic minerals",
-    "gold supplier Africa",
+    "East African precious metals supplier",
+    "East African gemstones supplier",
+    "East African strategic minerals",
+    "gold supplier East Africa",
     "tanzanite supplier",
     "rough diamonds Africa",
     "copper supplier Africa",
@@ -56,18 +65,25 @@ export const metadata: Metadata = {
     "responsible sourcing Africa",
     "Kimberley Process diamonds",
     "OECD due diligence minerals",
+    "Al Ain Metals",
+    "gold export Tanzania",
+    "silver bullion East Africa",
   ],
   authors: [{ name: company.name }],
   creator: company.name,
   publisher: company.name,
   alternates: {
-    canonical: "https://www.alainmetals.com",
+    canonical: "https://alainmetalscorp.com",
+    languages: {
+      "x-default": "https://alainmetalscorp.com",
+      en: "https://alainmetalscorp.com",
+    },
   },
   openGraph: {
-    title: `${company.name} | African Precious Metals, Gemstones & Strategic Minerals`,
+    title: "Al Ain Metals Corp | East African Precious Metals & Gemstones Export",
     description:
-      "African precious metals, gemstones and strategic minerals sourcing, trading and export company. Supplying gold, silver, platinum, gemstones and industrial minerals to international markets.",
-    url: "https://www.alainmetals.com",
+      "Al Ain Metals Corporation supplies premium gold, silver, gemstones & strategic minerals from East Africa to refineries, banks & institutional buyers worldwide.",
+    url: "https://alainmetalscorp.com",
     siteName: company.name,
     locale: "en_US",
     type: "website",
@@ -77,15 +93,15 @@ export const metadata: Metadata = {
         url: "/assets/images/african-precious-metals-gemstones-strategic-minerals.webp",
         width: 1200,
         height: 630,
-        alt: "AL AIN METALS CORPORATION LIMITED - African Precious Metals Trading",
+        alt: "Al Ain Metals Corp - East African Precious Metals & Gemstones Export",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${company.shortName} | African Precious Metals, Gemstones & Strategic Minerals`,
+    title: "Al Ain Metals Corp | East African Precious Metals & Gemstones Export",
     description:
-      "African precious metals, gemstones and strategic minerals sourcing, trading and export company.",
+      "Al Ain Metals Corporation supplies premium gold, silver, gemstones & strategic minerals from East Africa to refineries, banks & institutional buyers worldwide.",
     images: ["/assets/images/african-precious-metals-gemstones-strategic-minerals.webp"],
   },
   robots: {
@@ -122,9 +138,14 @@ export default function RootLayout({
         <meta name="geo.placename" content="Dar es Salaam, Tanzania" />
       </head>
       <body className="min-h-dvh grid grid-rows-[1fr_auto] bg-black text-white antialiased">
+        <GoogleAnalytics />
+        <GAPageView />
+        <WebVitals />
         <LoadingScreen />
-        <Navbar />
-        <main id="main-content" role="main">
+        <Header>
+          <Navbar />
+        </Header>
+        <main id="main-content" role="main" aria-label="Main content">
           {children}
         </main>
         <Footer />

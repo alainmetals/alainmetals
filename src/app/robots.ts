@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/admin/"],
       },
     ],
-    sitemap: "https://www.alainmetals.com/sitemap.xml",
+    sitemap: "https://alainmetalscorp.com/sitemap.xml",
   }
 }

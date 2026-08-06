@@ -1,19 +1,20 @@
 import type { Metadata } from "next"
 import { ExportProcessContent } from "./ExportProcessContent"
+import { PageJsonLd } from "@/components/PageJsonLd"
 import { company } from "@/lib/siteData"
 
 export const metadata: Metadata = {
-  title: "Export Process",
+  title: "Export Process | Al Ain Metals Precious Metals Export Africa",
   description:
-    "Learn about our transparent precious metals, gemstones and strategic minerals export process from inquiry to delivery. Clear steps designed for buyer confidence and full compliance.",
+    "Learn about our transparent precious metals, gemstones and strategic minerals export process from inquiry to final delivery. Clear, structured steps designed for buyer confidence and full regulatory compliance.",
   alternates: {
-    canonical: "https://www.alainmetals.com/export-process",
+    canonical: "https://alainmetalscorp.com/export-process",
   },
   openGraph: {
     title: `Export Process | ${company.shortName}`,
     description:
       "Transparent export process from inquiry to delivery for precious metals, gemstones and strategic minerals.",
-    url: "https://www.alainmetals.com/export-process",
+    url: "https://alainmetalscorp.com/export-process",
     siteName: company.name,
     type: "website",
     images: [
@@ -35,5 +36,10 @@ export const metadata: Metadata = {
 }
 
 export default function ExportProcessPage() {
-  return <ExportProcessContent />
+  return (
+    <>
+      <PageJsonLd type="breadcrumb" data={{ items: [ { name: "Home", url: "https://alainmetalscorp.com" }, { name: "Export Process", url: "https://alainmetalscorp.com/export-process" } ] }} />
+      <ExportProcessContent />
+    </>
+  )
 }

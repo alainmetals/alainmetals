@@ -1,19 +1,20 @@
 import type { Metadata } from "next"
 import { FAQContent } from "./FAQContent"
+import { PageJsonLd } from "@/components/PageJsonLd"
 import { company } from "@/lib/siteData"
 
 export const metadata: Metadata = {
-  title: "FAQ",
+  title: "Precious Metals FAQ | Gold, Silver & Gemstone Sourcing | Al Ain",
   description:
-    "Frequently asked questions about precious metals purchasing, gemstone sourcing, export process, quality verification, compliance and working with AL AIN METALS CORPORATION LIMITED.",
+    "Frequently asked questions about precious metals purchasing, gemstone sourcing, export process, quality verification, compliance and working with AL AIN METALS CORPORATION LIMITED as your trading partner.",
   alternates: {
-    canonical: "https://www.alainmetals.com/faq",
+    canonical: "https://alainmetalscorp.com/faq",
   },
   openGraph: {
     title: `FAQ | ${company.shortName}`,
     description:
       "Frequently asked questions about precious metals purchasing, gemstone sourcing, export process and compliance.",
-    url: "https://www.alainmetals.com/faq",
+    url: "https://alainmetalscorp.com/faq",
     siteName: company.name,
     type: "website",
     images: [
@@ -93,6 +94,7 @@ function FAQPageJsonLd() {
 export default function FAQPage() {
   return (
     <>
+      <PageJsonLd type="breadcrumb" data={{ items: [ { name: "Home", url: "https://alainmetalscorp.com" }, { name: "FAQ", url: "https://alainmetalscorp.com/faq" } ] }} />
       <FAQPageJsonLd />
       <FAQContent />
     </>

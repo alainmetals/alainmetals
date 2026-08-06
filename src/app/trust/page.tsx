@@ -1,28 +1,44 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PageHero } from "@/components/PageHero"
+import { PageJsonLd } from "@/components/PageJsonLd"
 import { CTASection } from "@/components/CTASection"
 import { trustSections } from "@/lib/data/trust"
 
 export const metadata: Metadata = {
-  title: "Trust & Compliance | Corporate Governance, Responsible Sourcing & ESG",
+  title: "Trust & Compliance | Responsible Sourcing | Al Ain Metals",
   description: "Learn about AL AIN METALS commitment to corporate governance, responsible sourcing, AML/KYC compliance, ESG sustainability and supply chain integrity.",
   openGraph: {
     title: "Trust & Compliance | AL AIN METALS",
     description: "Corporate governance, responsible sourcing, AML/KYC compliance, ESG sustainability and supply chain integrity.",
-    url: "https://alainmetals.com/trust",
+    url: "https://alainmetalscorp.com/trust",
     siteName: "AL AIN METALS CORPORATION LIMITED",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/assets/images/luxury-commodity-trading-headquarters.webp",
+        width: 1200,
+        height: 630,
+        alt: "Al Ain Metals Corp - Trust & Compliance",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trust & Compliance | AL AIN METALS",
+    description: "Corporate governance, responsible sourcing, AML/KYC compliance, ESG sustainability and supply chain integrity.",
+    images: ["/assets/images/luxury-commodity-trading-headquarters.webp"],
   },
   alternates: {
-    canonical: "https://alainmetals.com/trust",
+    canonical: "https://alainmetalscorp.com/trust",
   },
 }
 
 export default function TrustPage() {
   return (
     <>
+      <PageJsonLd type="breadcrumb" data={{ items: [ { name: "Home", url: "https://alainmetalscorp.com" }, { name: "Trust", url: "https://alainmetalscorp.com/trust" } ] }} />
       <PageHero
         title="Trust & Compliance"
         subtitle="Our commitment to corporate governance, responsible sourcing, regulatory compliance and sustainability."

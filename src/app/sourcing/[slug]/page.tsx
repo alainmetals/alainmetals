@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const country = countryPages.find((c) => c.slug === slug)
   if (!country) return {}
 
-  const url = `https://www.alainmetals.com/sourcing/${country.slug}`
+  const url = `https://alainmetalscorp.com/sourcing/${country.slug}`
   return {
     title: country.metaTitle,
     description: country.metaDescription,
@@ -58,9 +58,9 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
         type="breadcrumb"
         data={{
           items: [
-            { name: "Home", url: "https://www.alainmetals.com" },
-            { name: "Sourcing", url: "https://www.alainmetals.com/sourcing" },
-            { name: country.title, url: `https://www.alainmetals.com/sourcing/${country.slug}` },
+            { name: "Home", url: "https://alainmetalscorp.com" },
+            { name: "Sourcing", url: "https://alainmetalscorp.com/sourcing" },
+            { name: country.title, url: `https://alainmetalscorp.com/sourcing/${country.slug}` },
           ],
         }}
       />

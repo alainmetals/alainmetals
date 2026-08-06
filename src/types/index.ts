@@ -13,6 +13,7 @@ export interface Product {
   description: string
   purity?: string
   origin?: string
+  image?: string
 }
 
 export interface Service {

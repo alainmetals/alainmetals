@@ -35,7 +35,14 @@ export function OptimizedImage({
       style={fill ? { objectFit, objectPosition } : { objectFit, objectPosition }}
       loading={priority ? undefined : "lazy"}
       priority={priority}
-      sizes={fill ? "(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1200px" : undefined}
+      sizes={
+        fill
+          ? "(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1200px"
+          : width
+            ? `(max-width: ${width}px) 100vw, ${width}px`
+            : "(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1200px"
+      }
+      quality={85}
     />
   )
 }

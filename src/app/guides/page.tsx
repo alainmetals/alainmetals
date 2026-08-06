@@ -8,16 +8,30 @@ import { PageHero } from "@/components/PageHero"
 import { PageJsonLd } from "@/components/PageJsonLd"
 
 export const metadata: Metadata = {
-  title: "Knowledge Centre | Guides, Regulations & Industry Standards",
+  title: "Knowledge Centre | Guides & Industry Standards | Al Ain Metals",
   description:
     "Expert guides on gold export, diamond certification, OECD due diligence, Kimberley Process, trade finance and precious metals assaying from AL AIN METALS.",
-  alternates: { canonical: "https://www.alainmetals.com/guides" },
+  alternates: { canonical: "https://alainmetalscorp.com/guides" },
   openGraph: {
     title: "Knowledge Centre | AL AIN METALS",
     description: "Expert guides on precious metals trade, compliance and regulations.",
-    url: "https://www.alainmetals.com/guides",
+    url: "https://alainmetalscorp.com/guides",
     siteName: company.name,
     type: "website",
+    images: [
+      {
+        url: "/assets/images/global-commodity-trading.webp",
+        width: 1200,
+        height: 630,
+        alt: "Al Ain Metals Corp - Knowledge Centre",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Knowledge Centre | AL AIN METALS",
+    description: "Expert guides on precious metals trade, compliance and regulations.",
+    images: ["/assets/images/global-commodity-trading.webp"],
   },
 }
 
@@ -28,8 +42,8 @@ export default function GuidesIndexPage() {
         type="breadcrumb"
         data={{
           items: [
-            { name: "Home", url: "https://www.alainmetals.com" },
-            { name: "Guides", url: "https://www.alainmetals.com/guides" },
+            { name: "Home", url: "https://alainmetalscorp.com" },
+            { name: "Guides", url: "https://alainmetalscorp.com/guides" },
           ],
         }}
       />

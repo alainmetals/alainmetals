@@ -8,16 +8,30 @@ import { PageHero } from "@/components/PageHero"
 import { PageJsonLd } from "@/components/PageJsonLd"
 
 export const metadata: Metadata = {
-  title: "Sourcing Countries | African Mineral Sources",
+  title: "African Sourcing Network | Precious Metals | Al Ain Metals",
   description:
     "Explore our African sourcing network. We source precious metals, gemstones and strategic minerals from 12+ countries across East, Central, Southern and West Africa.",
-  alternates: { canonical: "https://www.alainmetals.com/sourcing" },
+  alternates: { canonical: "https://alainmetalscorp.com/sourcing" },
   openGraph: {
     title: "Sourcing Countries | AL AIN METALS",
     description: "African sourcing network across East, Central, Southern and West Africa.",
-    url: "https://www.alainmetals.com/sourcing",
+    url: "https://alainmetalscorp.com/sourcing",
     siteName: company.name,
     type: "website",
+    images: [
+      {
+        url: "/assets/images/african-commodity-sourcing-network.webp",
+        width: 1200,
+        height: 630,
+        alt: "Al Ain Metals Corp - African Sourcing Network",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sourcing Countries | AL AIN METALS",
+    description: "African sourcing network across East, Central, Southern and West Africa.",
+    images: ["/assets/images/african-commodity-sourcing-network.webp"],
   },
 }
 
@@ -30,8 +44,8 @@ export default function SourcingIndexPage() {
         type="breadcrumb"
         data={{
           items: [
-            { name: "Home", url: "https://www.alainmetals.com" },
-            { name: "Sourcing", url: "https://www.alainmetals.com/sourcing" },
+            { name: "Home", url: "https://alainmetalscorp.com" },
+            { name: "Sourcing", url: "https://alainmetalscorp.com/sourcing" },
           ],
         }}
       />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { PageHero } from "@/components/PageHero"
+import { PageJsonLd } from "@/components/PageJsonLd"
 import { CTASection } from "@/components/CTASection"
 import { trustSections, getTrustBySlug } from "@/lib/data/trust"
 import { company } from "@/lib/siteData"
@@ -27,13 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: section.metaTitle,
       description: section.metaDescription,
-      url: `https://www.alainmetals.com/trust/${slug}`,
+      url: `https://alainmetalscorp.com/trust/${slug}`,
       siteName: company.name,
       locale: "en_US",
       type: "website",
     },
     alternates: {
-      canonical: `https://www.alainmetals.com/trust/${slug}`,
+      canonical: `https://alainmetalscorp.com/trust/${slug}`,
     },
   }
 }
@@ -49,6 +50,7 @@ export default async function TrustDetailPage({ params }: Props) {
 
   return (
     <>
+      <PageJsonLd type="breadcrumb" data={{ items: [ { name: "Home", url: "https://alainmetalscorp.com" }, { name: "Trust", url: "https://alainmetalscorp.com/trust" }, { name: section.title, url: `https://alainmetalscorp.com/trust/${slug}` } ] }} />
       <PageHero
         title={section.title}
         subtitle={section.subtitle}

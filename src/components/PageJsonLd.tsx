@@ -1,6 +1,6 @@
 import { company } from "@/lib/siteData"
 
-const baseUrl = "https://www.alainmetals.com"
+const baseUrl = "https://alainmetalscorp.com"
 
 interface PageJsonLdProps {
   type: "product" | "article" | "breadcrumb"
@@ -60,6 +60,10 @@ export function PageJsonLd({ type, data }: PageJsonLdProps) {
           "@type": "ImageObject",
           url: `${baseUrl}/assets/images/african-precious-metals-gemstones-strategic-minerals.webp`,
         },
+      },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": data.url || baseUrl,
       },
       datePublished: data.datePublished || new Date().toISOString(),
       dateModified: data.dateModified || new Date().toISOString(),

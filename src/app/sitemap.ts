@@ -6,9 +6,10 @@ import { guidePages } from "@/lib/data/guides"
 import { industryPages } from "@/lib/data/industries"
 import { resourceArticles } from "@/lib/data/resources"
 import { trustSections } from "@/lib/data/trust"
+import { blogArticles } from "@/lib/data/blog"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.alainmetals.com"
+  const baseUrl = "https://alainmetalscorp.com"
   const now = new Date()
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -16,6 +17,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/products`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/services`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/gold-trading`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/silver-trading`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/gemstones`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/strategic-minerals`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/assaying-services`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/secure-logistics`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/due-diligence`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/export-process`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compliance`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
@@ -26,6 +34,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/industries`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/resources`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/trust`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/privacy`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/testimonials`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
   ]
 
   const productPages_: MetadataRoute.Sitemap = productPages.map((p) => ({
@@ -77,6 +88,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
+  const blogPages_: MetadataRoute.Sitemap = blogArticles.map((b) => ({
+    url: `${baseUrl}/blog/${b.slug}`,
+    lastModified: new Date(b.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
   return [
     ...staticPages,
     ...productPages_,
@@ -86,5 +104,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...industryPages_,
     ...resourcePages_,
     ...trustPages_,
+    ...blogPages_,
   ]
 }
