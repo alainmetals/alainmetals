@@ -48,9 +48,6 @@ next-env.d.ts
 
 # screenshots
 screenshots/
-*.png
-*.jpg
-*.jpeg
 
 # logs
 *.log
@@ -60,6 +57,9 @@ logs/
 tmp/
 temp/
 .cache/
+
+# local machine junk
+Microsoft/
 
 # debug files
 debug/
