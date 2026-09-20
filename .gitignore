@@ -1,3 +1,7 @@
+# macOS resource forks
+._*
+**/._*
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -44,9 +48,6 @@ next-env.d.ts
 
 # screenshots
 screenshots/
-*.png
-*.jpg
-*.jpeg
 
 # logs
 *.log
@@ -56,6 +57,9 @@ logs/
 tmp/
 temp/
 .cache/
+
+# local machine junk
+Microsoft/
 
 # debug files
 debug/

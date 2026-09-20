@@ -1,11 +1,18 @@
 "use client"
 
+import { useEffect } from "react"
+
 export default function Error({
+  error,
   reset,
 }: {
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  useEffect(() => {
+    console.error(error)
+  }, [error])
+
   return (
     <section className="min-h-screen flex items-center justify-center bg-black-deep">
       <div className="text-center px-6">

@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
+import { GoogleAnalytics, GAPageView, WebVitals } from "@/components/Analytics"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -56,12 +57,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
     countryName: "Tanzania",
+    images: [
+      {
+        url: "/assets/images/african-precious-metals-gemstones-strategic-minerals.webp",
+        width: 1200,
+        height: 630,
+        alt: "Al Ain Metals - East African Precious Metals & Gemstones",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Private Access to African Gold & Rare Gemstones | Al AIN Metals",
     description:
       "Direct access to African gold and rare gemstones for private clients.",
+    images: ["/assets/images/african-precious-metals-gemstones-strategic-minerals.webp"],
   },
   robots: {
     index: true,
@@ -92,6 +102,9 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=yes" />
       </head>
       <body className="min-h-dvh grid grid-rows-[1fr_auto] bg-black text-cream antialiased">
+        <GoogleAnalytics />
+        <GAPageView />
+        <WebVitals />
         <header id="site-header" role="banner" aria-label="Site header">
           <Navbar />
         </header>

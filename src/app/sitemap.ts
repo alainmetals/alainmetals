@@ -1,13 +1,21 @@
 import type { MetadataRoute } from "next"
 import { allArticles } from "@/lib/articles"
+import { blogArticles } from "@/lib/data/blog"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://alainmetalscorp.com"
   const now = new Date()
 
-  const articleRoutes = allArticles.map((article) => ({
+  const articleRoutes: MetadataRoute.Sitemap = allArticles.map((article) => ({
     url: `${baseUrl}/insights/${article.slug}`,
     lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
+  const blogRoutes: MetadataRoute.Sitemap = blogArticles.map((b) => ({
+    url: `${baseUrl}/blog/${b.slug}`,
+    lastModified: new Date(b.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }))
@@ -36,6 +44,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/gold-trading`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/silver-trading`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/strategic-minerals`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/assaying-services`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/secure-logistics`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/due-diligence`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/how-it-works`,
@@ -68,6 +112,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     ...articleRoutes,
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    ...blogRoutes,
+    {
+      url: `${baseUrl}/testimonials`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
     {
       url: `${baseUrl}/inquire`,
       lastModified: now,

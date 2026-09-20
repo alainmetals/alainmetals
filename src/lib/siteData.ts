@@ -4,6 +4,8 @@ export const company = {
   shortName: "AL AIN METALS",
   tagline: "Private Access to African Gold & Rare Gemstones",
   phone: "+255 652 979 692",
+  phoneDisplay: "+255 652 979 692",
+  whatsapp: "255652979692",
   email: "privateclients@alainmetalscorp.com",
   address: "Dar es Salaam, Tanzania",
   description:

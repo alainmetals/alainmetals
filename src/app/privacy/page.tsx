@@ -1,12 +1,25 @@
 import type { Metadata } from "next"
 import { ScrollReveal } from "@/components/ScrollReveal"
+import { company } from "@/lib/siteData"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Policy | Al Ain Metals Corp Tanzania",
   description:
     "AL AIN Metals privacy policy. We do not sell inquiry data. All client information is held under strict NDA.",
   alternates: {
     canonical: "https://alainmetalscorp.com/privacy",
+  },
+  openGraph: {
+    title: `Privacy Policy | ${company.shortName}`,
+    description: `Privacy policy for ${company.name}. How we collect, use and protect your information.`,
+    url: "https://alainmetalscorp.com/privacy",
+    siteName: company.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Privacy Policy | ${company.shortName}`,
+    description: `Privacy policy for ${company.name}. How we collect, use and protect your information.`,
   },
 }
 
@@ -57,7 +70,6 @@ export default function PrivacyPage() {
                   <p className="text-gray-300 text-sm leading-relaxed">{section.text}</p>
                 </div>
               ))}
-
               <p className="text-gray-500 text-[11px]">Last updated: 2025.</p>
             </div>
           </ScrollReveal>

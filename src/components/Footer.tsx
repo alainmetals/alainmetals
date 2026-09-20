@@ -84,6 +84,8 @@ export function Footer() {
               {[
                 { label: "Provenance", href: "/provenance" },
                 { label: "Insights", href: "/insights" },
+                { label: "Blog", href: "/blog" },
+                { label: "Testimonials", href: "/testimonials" },
                 { label: "Contact", href: "/inquire" },
                 { label: "Terms", href: "/terms" },
                 { label: "Privacy", href: "/privacy" },
