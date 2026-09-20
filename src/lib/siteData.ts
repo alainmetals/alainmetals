@@ -1,488 +1,188 @@
-import { NavLink, ProductCategory, Service, FAQItem, TimelineStep } from "@/types"
-
 export const company = {
-  name: "AL AIN METALS CORPORATION LIMITED",
+  name: "AL AIN METALS",
+  fullName: "ALAIN METALS CORP",
   shortName: "AL AIN METALS",
-  tagline: "African Precious Metals, Gemstones & Strategic Minerals",
+  tagline: "Private Access to African Gold & Rare Gemstones",
   phone: "+255 652 979 692",
-  phoneDisplay: "+255 652 979 692",
-  email: "info@alainmetals.com",
+  email: "privateclients@alainmetalscorp.com",
   address: "Dar es Salaam, Tanzania",
-  whatsapp: "255652979692",
   description:
-    "AL AIN METALS CORPORATION LIMITED is an African precious metals, gemstones and strategic minerals sourcing, trading and export company. Through our sourcing network and strategic partnerships, we supply gold, silver, platinum group metals, gemstones and industrial minerals to international refineries, bullion dealers, jewellers, banks, institutional buyers and investors worldwide.",
-  heroHeadline: "African Precious Metals, Gemstones & Strategic Minerals",
-  heroSubheadline:
-    "Through our sourcing network and strategic partnerships, we supply premium precious metals, gemstones and strategic minerals to refineries, jewellers, bullion dealers and institutional buyers worldwide.",
+    "AL AIN Metals provides direct access to African gold and rare gemstones for private clients. The company serves ultra-high-net-worth individuals, family offices, private bank desks, and sovereign allocators with independently assayed gold (99.5%–99.99% purity), GIA/GRS certified gemstones, Lloyd's-insured logistics, and secure vaulting in Dubai, Singapore, and Geneva.",
 }
 
-export const navLinks: NavLink[] = [
+export const navLinks = [
   { label: "Home", href: "/" },
+  { label: "Private Clients", href: "/private-clients" },
+  { label: "Gold", href: "/gold" },
+  { label: "Gemstones", href: "/gemstones" },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Verification", href: "/trust" },
   { label: "About", href: "/about" },
-  { label: "Products", href: "/products" },
-  { label: "Services", href: "/services" },
-  { label: "Process", href: "/export-process" },
-  { label: "Compliance", href: "/compliance" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
+  { label: "Insights", href: "/insights" },
+  { label: "Contact", href: "/inquire" },
 ]
 
-export const productCategories: ProductCategory[] = [
+export const trustCredentials = [
+  "Tanzania Mining Commission Licensed",
+  "LBMA-Aligned Assay by SGS & Bureau Veritas",
+  "Lloyd's of London Insured Logistics",
+  "DMCC-Registered Dubai Operations",
+]
+
+export const offerings = [
   {
-    title: "Precious Metals",
-    items: [
-      {
-        title: "Gold Bars",
-        description:
-          "High-purity refined gold bars cast to international specifications. Suitable for refineries, bullion dealers, central banks and institutional investors.",
-        purity: "99.9% – 99.99%",
-        origin: "Africa",
-      },
-      {
-        title: "Gold Nuggets",
-        description:
-          "Natural gold nuggets sourced through vetted artisanal and small-scale mining partners. Sought after by jewellery manufacturers and collectors worldwide.",
-        purity: "85% – 95%",
-        origin: "Africa",
-      },
-      {
-        title: "Gold Dust",
-        description:
-          "Fine gold dust recovered from alluvial deposits. Processed, dried and prepared for export to qualified international refineries.",
-        purity: "80% – 92%",
-        origin: "Africa",
-      },
-      {
-        title: "Silver Bullion",
-        description:
-          "Refined silver bars and bullion products for industrial use, investment and jewellery manufacturing.",
-        purity: "99.9%",
-        origin: "Africa",
-      },
-      {
-        title: "Platinum Group Metals",
-        description:
-          "Platinum, palladium and rhodium sourced upon request for specialised industrial and investment applications.",
-        purity: "Per specification",
-        origin: "Africa",
-      },
-    ],
+    title: "Allocated Gold",
+    description:
+      "Investment-grade gold bars, nuggets, and dust independently assayed to 99.5%–99.99% purity by SGS and Bureau Veritas. Full provenance documentation and assay certificates included. Minimum allocation $250,000.",
+    minAllocation: "$250,000",
   },
   {
-    title: "Gemstones",
-    items: [
-      {
-        title: "Tanzanite",
-        description:
-          "Rare blue-violet gemstone exclusive to East Africa. Supplied in calibrated and bespoke sizes for luxury jewellers.",
-        origin: "Tanzania",
-      },
-      {
-        title: "Rough Diamonds",
-        description:
-          "Uncut diamonds sourced through licensed channels with full Kimberley Process certification.",
-        origin: "Africa",
-      },
-      {
-        title: "Polished Diamonds",
-        description:
-          "Certified polished diamonds in various cuts and grades for jewellery and investment.",
-        origin: "Global",
-      },
-      {
-        title: "Rubies",
-        description:
-          "Premium African rubies prized for their deep red colour and exceptional brilliance.",
-        origin: "Africa",
-      },
-      {
-        title: "Sapphires",
-        description:
-          "Natural sapphires in blue, yellow and fancy colours sourced from East African deposits.",
-        origin: "Africa",
-      },
-      {
-        title: "Emeralds",
-        description:
-          "High-quality emeralds with vivid green colour for luxury jewellery applications.",
-        origin: "Africa",
-      },
-      {
-        title: "Tsavorite",
-        description:
-          "Rare green garnet found in East Africa. Valued for its vivid colour and brilliance.",
-        origin: "East Africa",
-      },
-      {
-        title: "Spinel",
-        description:
-          "Natural spinel in red, pink and blue hues. An emerging collectors gemstone.",
-        origin: "Africa",
-      },
-      {
-        title: "Tourmaline",
-        description:
-          "Multi-coloured tourmaline in paraiba, rubellite and indicolite varieties.",
-        origin: "Africa",
-      },
-    ],
+    title: "Rare Gemstones",
+    description:
+      "Tanzanite from the Merelani Hills (the world's only commercial source), ruby, emerald, and sapphire — all GIA/GRS certified with documented provenance. Each gemstone includes independent verification of authenticity and quality.",
+    minAllocation: "Varies by stone",
   },
   {
-    title: "Strategic Minerals",
-    items: [
-      {
-        title: "Copper",
-        description:
-          "Copper cathodes and concentrate for industrial manufacturing and electronics.",
-        purity: "99.99%",
-        origin: "Africa",
-      },
-      {
-        title: "Nickel",
-        description:
-          "Nickel ore and refined products for stainless steel and battery manufacturing.",
-        purity: "Per specification",
-        origin: "Africa",
-      },
-      {
-        title: "Cobalt",
-        description:
-          "Cobalt hydroxide and refined cobalt for lithium-ion battery and aerospace industries.",
-        purity: "Per specification",
-        origin: "Africa",
-      },
-      {
-        title: "Tantalum",
-        description:
-          "Conflict-free tantalum for electronics, capacitors and aerospace applications.",
-        purity: "Per specification",
-        origin: "Africa",
-      },
-      {
-        title: "Tin",
-        description:
-          "Tin ingots and concentrate for soldering, packaging and industrial applications.",
-        purity: "99.9%",
-        origin: "Africa",
-      },
-      {
-        title: "Lithium",
-        description:
-          "Lithium products sourced upon request for battery and energy storage industries.",
-        purity: "Per specification",
-        origin: "Africa",
-      },
-    ],
+    title: "Private Acquisition",
+    description:
+      "End-to-end private acquisition services: personalized sourcing, independent verification, compliance checks, documented settlement, and Lloyd's-insured delivery or secure custody in Dubai, Singapore, or Geneva.",
+    minAllocation: "By Consultation",
   },
 ]
 
-export const services: Service[] = [
+export const processSteps = [
   {
-    title: "Commodity Sourcing & Procurement",
-    description:
-      "Sourcing precious metals, gemstones and strategic minerals through a vetted African network with full traceability.",
+    number: "01",
+    title: "Private Consultation",
+    description: "Understand your acquisition objectives, preferred product, purchase range, and timeline. Responses within 48 business hours.",
   },
   {
-    title: "Precious Metals Trading",
-    description:
-      "Structured trading in gold, silver and platinum group metals with transparent pricing and international settlement.",
+    number: "02",
+    title: "Sourcing",
+    description: "Identify suitable gold or gemstones from licensed operations in the Kilimanjaro Gold Belt or Merelani Hills based on your specifications.",
   },
   {
-    title: "Gemstone Sourcing",
-    description:
-      "Direct sourcing of tanzanite, diamonds, rubies and sapphires from African mining regions with chain-of-custody documentation.",
+    number: "03",
+    title: "Independent Verification",
+    description: "Assay by SGS or Bureau Veritas, GIA/GRS certification for gemstones, and full provenance documentation including chain of custody records.",
   },
   {
-    title: "Strategic Minerals Supply",
-    description:
-      "Supply of copper, nickel, cobalt, tantalum, tin and lithium from African sources to global buyers.",
+    number: "04",
+    title: "Secure Transaction",
+    description: "Complete KYC/AML compliance checks under Tanzania AML Act 2006 and FATF standards. Documented settlement with mutual NDA.",
   },
   {
-    title: "Independent Assaying & Quality Verification",
-    description:
-      "Third-party assaying by qualified laboratories with full transparency on purity, weight and valuation.",
-  },
-  {
-    title: "Gemstone Authentication & Certification",
-    description:
-      "Gemstones certified by recognised gemological laboratories with detailed grading reports and provenance.",
-  },
-  {
-    title: "Export Documentation",
-    description:
-      "End-to-end export management including certificates of origin, customs clearance and regulatory compliance.",
-  },
-  {
-    title: "Secure Logistics",
-    description:
-      "Armoured transport, secure storage and international freight coordination with insurance to delivery point.",
-  },
-  {
-    title: "Trade Finance Coordination",
-    description:
-      "Facilitating SBLC, DLC, wire transfers and standard trade finance instruments through international banking channels.",
-  },
-  {
-    title: "Buyer Due Diligence",
-    description:
-      "On-ground representation including supplier verification, contract negotiation, site visits and inspection coordination.",
+    number: "05",
+    title: "Delivery or Secure Custody",
+    description: "Lloyd's-insured delivery via Brink's or Loomis to your preferred destination, or secure custody in Dubai (DMCC), Singapore (Brink's), or Geneva (Loomis).",
   },
 ]
 
-export const sourcingCountries = [
-  { name: "Tanzania", flag: "TZ", region: "East Africa" },
-  { name: "Uganda", flag: "UG", region: "East Africa" },
-  { name: "Kenya", flag: "KE", region: "East Africa" },
-  { name: "Rwanda", flag: "RW", region: "East Africa" },
-  { name: "Burundi", flag: "BI", region: "East Africa" },
-  { name: "DRC", flag: "CD", region: "Central Africa" },
-  { name: "Zambia", flag: "ZM", region: "Southern Africa" },
-  { name: "Zimbabwe", flag: "ZW", region: "Southern Africa" },
-  { name: "Botswana", flag: "BW", region: "Southern Africa" },
-  { name: "Namibia", flag: "NA", region: "Southern Africa" },
-  { name: "Ghana", flag: "GH", region: "West Africa" },
-  { name: "South Africa", flag: "ZA", region: "Southern Africa" },
-]
-
-export const exportDestinations = [
-  { name: "United Arab Emirates", flag: "AE" },
-  { name: "India", flag: "IN" },
-  { name: "China", flag: "CN" },
-  { name: "Switzerland", flag: "CH" },
-  { name: "United Kingdom", flag: "GB" },
-  { name: "Turkey", flag: "TR" },
-  { name: "Hong Kong SAR", flag: "HK" },
-  { name: "Saudi Arabia", flag: "SA" },
-  { name: "South Africa", flag: "ZA" },
-  { name: "Oman", flag: "OM" },
-]
-
-export const whyBuyersChooseUs: string[] = [
-  "Sourcing network across multiple African markets supported by established partner relationships.",
-  "Commitment to responsible sourcing, applicable national laws, OECD Due Diligence Guidance and international trade regulations.",
-  "Independent third-party assaying, gemstone certification, documentation and supply chain transparency.",
-  "Dedicated relationship management from initial inquiry through to post-delivery.",
-  "Partnership models designed to accommodate refineries, bullion dealers, jewellers, commodity traders and institutional investors.",
-  "Regional expertise with on-ground presence enabling supplier verification, quality control and logistics coordination.",
-]
-
-export const whyChooseUs: string[] = [
-  "Sourcing network across East and Southern Africa with established partner relationships.",
-  "Commitment to responsible sourcing, applicable national laws, OECD Due Diligence Guidance and international trade regulations.",
-  "Supply chain visibility from partner source through export documentation to delivery.",
-  "Dedicated relationship management throughout the transaction lifecycle.",
-  "Partnership models designed for central banks, refineries, bullion dealers, jewellers, commodity traders and institutional investors.",
-]
-
-export const timelineSteps: TimelineStep[] = [
+export const gemstoneTypes = [
   {
-    step: 1,
-    title: "Inquiry & Preliminary Proposal",
-    summary:
-      "Submit your sourcing requirements, preferred product, quantity and destination.",
-    highlight: "Response within 24 hours",
-    description:
-      "Submit your requirements through our contact channel. We respond with a preliminary proposal including product availability, indicative pricing and proposed terms based on your specifications.",
+    name: "Tanzanite",
+    slug: "tanzanite",
+    description: "Violet-blue gemstone found exclusively in the Merelani Hills of Tanzania — the world's only commercial source. Estimated 585 million years old, approximately 1,000 times rarer than diamond.",
+    origin: "Merelani Hills, Tanzania",
+    certification: "GIA / GRS",
   },
   {
-    step: 2,
-    title: "Due Diligence & Agreement",
-    summary:
-      "Counterparty verification and a formal sale and purchase agreement.",
-    highlight: "Full documentation exchange",
-    description:
-      "We conduct counterparty due diligence and share corporate documentation. Where mutually agreed, a sale and purchase agreement is prepared outlining specifications, quantities, pricing and delivery terms.",
+    name: "Ruby",
+    slug: "ruby",
+    description: "Deep red corundum sourced from East Africa. Among the most valued precious gemstones, each stone independently verified for color, clarity, and origin.",
+    origin: "East Africa",
+    certification: "GIA / GRS",
   },
   {
-    step: 3,
-    title: "Verification & Quality Assurance",
-    summary:
-      "Independent third-party assaying and weight verification before shipment.",
-    highlight: "Certified lab results shared",
-    description:
-      "Independent assaying is conducted by a third-party laboratory. Assay certificates and weight verification reports are shared with the buyer for confirmation before shipment.",
+    name: "Emerald",
+    slug: "emerald",
+    description: "Vivid green beryl of exceptional clarity and color saturation, sourced from African origins and certified by GIA or GRS laboratories.",
+    origin: "Africa",
+    certification: "GIA / GRS",
   },
   {
-    step: 4,
-    title: "Payment & Logistics",
-    summary:
-      "Payment through agreed channels. Customs, security and freight coordination.",
-    highlight: "SBLC, DLC & wire transfer accepted",
-    description:
-      "Payment is processed through agreed banking channels. Export logistics including customs clearance, security and freight coordination are initiated.",
-  },
-  {
-    step: 5,
-    title: "Delivery & Settlement",
-    summary:
-      "Insured shipment with tracking. Final settlement upon buyer acceptance.",
-    highlight: "Fully insured global shipping",
-    description:
-      "Goods are shipped to the designated destination with tracking and insurance. Final settlement is completed upon delivery and buyer acceptance per agreed terms.",
+    name: "Sapphire",
+    slug: "sapphire",
+    description: "Blue corundum of remarkable depth and brilliance, sourced from African deposits and independently verified for quality and authenticity.",
+    origin: "Africa",
+    certification: "GIA / GRS",
   },
 ]
 
-export const complianceHighlights = [
+export const teamMembers = [
+  {
+    name: "Managing Director",
+    role: "Managing Director",
+    bio: "Overseeing all private client operations, strategic partnerships, and acquisition services across Africa and international markets.",
+  },
+  {
+    name: "Operations Director",
+    role: "Operations Director",
+    bio: "Managing sourcing from licensed operations in the Kilimanjaro Gold Belt and Merelani Hills, verification by SGS and Bureau Veritas, and Lloyd's-insured logistics.",
+  },
+  {
+    name: "Compliance Officer",
+    role: "Compliance Officer",
+    bio: "Ensuring regulatory compliance with Tanzania AML Act 2006, FATF Recommendations, Kimberley Process, and KYC requirements for all private client engagements.",
+  },
+]
+
+export const insightsArticles = [
+  {
+    slug: "physical-gold-ownership",
+    title: "Why Physical Gold Ownership Matters for Private Wealth",
+    excerpt:
+      "Understanding the role of allocated physical gold in private wealth preservation strategies. Physical gold provides direct ownership without counterparty risk, unlike paper gold instruments.",
+    date: "2025",
+    category: "Gold Allocation",
+  },
+  {
+    slug: "tanzanite-scarcity",
+    title: "The Last Great Tanzanite: Understanding Scarcity",
+    excerpt:
+      "The Merelani Hills tanzanite deposit is 585 million years old and the world's only commercial source. With an estimated depletion timeline of decades, tanzanite represents one of the rarest gemstones available for private acquisition.",
+    date: "2025",
+    category: "Gemstone Analysis",
+  },
+  {
+    slug: "precious-metals-verification",
+    title: "Five Essential Steps in Precious Metals Verification",
+    excerpt:
+      "Independent assaying by SGS or Bureau Veritas, GIA/GRS certification for gemstones, documented provenance, chain of custody verification, and Lloyd's-insured logistics form the complete verification framework for private precious metals acquisitions.",
+    date: "2025",
+    category: "Due Diligence",
+  },
+]
+
+export const trustPillars = [
   {
     title: "Responsible Sourcing",
-    description:
-      "Our approach is informed by the OECD Due Diligence Guidance for Responsible Supply Chains of Minerals from Conflict-Affected and High-Risk Areas.",
+    description: "Gold from licensed artisanal mining in the Kilimanjaro Gold Belt. Gemstones from verified African origins. No conflict sourcing.",
+    icon: "shield",
   },
   {
-    title: "Kimberley Process Compliance",
-    description:
-      "Rough diamond sourcing adheres to the Kimberley Process Certification Scheme, ensuring conflict-free diamond supply.",
+    title: "Independent Assaying",
+    description: "All gold independently tested by SGS and Bureau Veritas to confirm 99.5%–99.99% purity. Assay certificates included with every acquisition.",
+    icon: "check",
   },
   {
-    title: "Multi-Jurisdiction Compliance",
-    description:
-      "We seek to comply with applicable national mining and export laws in the markets where we operate, including relevant permits, licences and regulatory requirements.",
+    title: "Documentation & Provenance",
+    description: "Complete chain of custody from extraction to delivery. GPS-tagged traceability for tanzanite. Full provenance records for all products.",
+    icon: "document",
   },
   {
-    title: "AML & KYC Protocols",
-    description:
-      "Anti-Money Laundering and Know Your Customer procedures are applied to all transactions, including customer due diligence and transaction monitoring.",
+    title: "Compliance & KYC/AML",
+    description: "Full compliance with Tanzania AML Act 2006, FATF Recommendations, Kimberley Process, and KYC requirements. Cooperation with Tanzania FIA.",
+    icon: "lock",
   },
   {
-    title: "Export Documentation",
-    description:
-      "Exports are accompanied by documentation including commercial invoices, packing lists, certificates of origin, assay certificates, gemological reports and customs declarations.",
+    title: "Secure Settlement",
+    description: "Documented transaction processes with mutual NDA, KYC/AML verification, and compliant settlement under Tanzanian regulatory framework.",
+    icon: "secure",
   },
   {
-    title: "Country-Specific Requirements",
-    description:
-      "We navigate country-specific export regulations, permit requirements and bilateral trade agreements across our sourcing jurisdictions.",
+    title: "Discreet Delivery",
+    description: "Lloyd's-of-London-insured logistics via Brink's or Loomis. Tamper-evident packaging, GPS tracking, delivery to 190+ countries.",
+    icon: "delivery",
   },
 ]
-
-export const certificateItems = [
-  {
-    label: "Certificate of Origin",
-    description: "Official documentation certifying the country of origin for each shipment, issued by relevant authorities.",
-  },
-  {
-    label: "Assay Certificate",
-    description: "Laboratory analysis confirming precious metal purity, weight and composition, issued by independent third-party assayers.",
-  },
-  {
-    label: "Gemological Report",
-    description: "Independent gemstone authentication and grading report from recognised gemological laboratories.",
-  },
-  {
-    label: "Kimberley Process Certificate",
-    description: "Certification confirming rough diamonds are sourced through conflict-free channels per the Kimberley Process.",
-  },
-  {
-    label: "Export Permit",
-    description: "Export authorisation from relevant national authorities for each shipment.",
-  },
-  {
-    label: "Commercial Invoice",
-    description: "Commercial documentation including product description, quantities, pricing and terms of sale.",
-  },
-  {
-    label: "Packing List",
-    description: "Itemised packing specification detailing weights, packaging and marks for each shipment.",
-  },
-  {
-    label: "Customs Declaration",
-    description: "Customs export declarations filed with relevant national authorities per applicable regulations.",
-  },
-]
-
-export const faqItems: FAQItem[] = [
-  {
-    question: "What products do you supply?",
-    answer:
-      "We supply precious metals (gold bars, gold nuggets, gold dust, silver bullion, platinum group metals), gemstones (tanzanite, diamonds, rubies, sapphires, emeralds, tsavorite, spinel, tourmaline) and strategic minerals (copper, nickel, cobalt, tantalum, tin, lithium upon request).",
-  },
-  {
-    question: "Which countries do you source from?",
-    answer:
-      "We source commodities through an established African network, including Tanzania, Uganda, Kenya, Rwanda, Burundi, DRC, Zambia, Zimbabwe, Botswana, Namibia, Ghana and South Africa, among others. Sourcing is conducted with reference to applicable national laws and international trade regulations.",
-  },
-  {
-    question: "How do you verify quality and purity?",
-    answer:
-      "Precious metals are tested by independent third-party assayers before shipment. Gemstones are authenticated and certified by recognised gemological laboratories. Buyers receive assay certificates and grading reports documenting purity, weight and valuation.",
-  },
-  {
-    question: "Do you handle Kimberley Process certification for diamonds?",
-    answer:
-      "Yes. Rough diamond sourcing adheres to the Kimberley Process Certification Scheme, ensuring conflict-free supply with full chain-of-custody documentation.",
-  },
-  {
-    question: "What is your minimum order quantity?",
-    answer:
-      "Minimum order quantities vary by product type and are discussed during the proposal stage. Please contact our trading desk with your requirements.",
-  },
-  {
-    question: "How do you approach regulatory compliance?",
-    answer:
-      "We operate with reference to applicable national mining and export laws, the OECD Due Diligence Guidance for Responsible Supply Chains, Kimberley Process Certification and international trade regulations. Our practices include KYC, AML and supply chain due diligence procedures.",
-  },
-  {
-    question: "What payment terms and methods do you offer?",
-    answer:
-      "Payment terms are structured on a case-by-case basis. We work with buyers to facilitate wire transfers, SBLC, DLC and other standard trade finance instruments through international banking channels.",
-  },
-  {
-    question: "What is the typical timeline from inquiry to delivery?",
-    answer:
-      "Timelines depend on product availability, sourcing location, order quantity and destination. We provide estimated timelines during the proposal stage based on the specific requirements of each transaction.",
-  },
-  {
-    question: "What documentation do you provide with shipments?",
-    answer:
-      "Shipments are accompanied by documentation including commercial invoice, packing list, certificate of origin, assay certificate, gemological report (where applicable), Kimberley Process certificate (for rough diamonds), customs export declaration and any destination-specific documentation required.",
-  },
-  {
-    question: "Do you handle shipping and logistics?",
-    answer:
-      "We manage export logistics including secure transport, customs clearance and coordination with international freight forwarders. Shipping can be insured up to the agreed delivery point per the terms of the sale agreement.",
-  },
-  {
-    question: "How do I begin a transaction with AL AIN METALS?",
-    answer:
-      "Contact us via our website form, email or phone. Our team will respond to discuss your requirements and guide you through our process.",
-  },
-]
-
-export const stats = [
-  { value: "Est.", label: "Established" },
-  { value: "Multi", label: "Country Sourcing" },
-  { value: "Global", label: "Market Reach" },
-  { value: "OECD", label: "Framework Aligned" },
-]
-
-export const galleryImages = [
-  { src: "/assets/images/african-precious-metals-gemstones-strategic-minerals.webp", alt: "African precious metals, gemstones and strategic minerals collection" },
-  { src: "/assets/images/investment-grade-gold-bars.webp", alt: "Investment-grade gold bars prepared for international shipment" },
-  { src: "/assets/images/natural-african-gold-nuggets.webp", alt: "High-purity natural gold nuggets from African sources" },
-  { src: "/assets/images/premium-tanzanite-gemstones.webp", alt: "Premium tanzanite gemstones sourced from East Africa" },
-  { src: "/assets/images/certified-diamond-trading.webp", alt: "Certified rough diamonds with Kimberley Process documentation" },
-  { src: "/assets/images/premium-silver-bullion.webp", alt: "Refined silver bullion products for investment and industry" },
-  { src: "/assets/images/strategic-minerals-africa.webp", alt: "Strategic minerals sourced from African mining regions" },
-  { src: "/assets/images/precious-metals-assaying-laboratory.webp", alt: "Independent assaying and quality verification laboratory" },
-  { src: "/assets/images/secure-precious-metals-vault.webp", alt: "Secure precious metals storage and vault operations" },
-  { src: "/assets/images/african-commodity-sourcing-network.webp", alt: "African commodity sourcing network across multiple countries" },
-]
-
-export const images = {
-  about: "/assets/images/trusted-african-gold-trading-company.webp",
-  products: {
-    bars: "/assets/images/investment-grade-gold-bars.webp",
-    nuggets: "/assets/images/natural-african-gold-nuggets.webp",
-    dust: "/assets/images/premium-gold-dust-supplier.webp",
-  },
-  services: "/assets/images/global-commodity-trading.webp",
-  exportProcess: "/assets/images/international-commodity-export-logistics.webp",
-  compliance: "/assets/images/gold-export-compliance-documentation.webp",
-  qualityAssurance: "/assets/images/precious-metals-assaying-laboratory.webp",
-  sourcingNetwork: "/assets/images/african-commodity-sourcing-network.webp",
-  mining: "/assets/images/african-gold-mining-operations.webp",
-  globalMarkets: "/assets/images/global-commodity-trading.webp",
-  logistics: "/assets/images/international-commodity-export-logistics.webp",
-  security: "/assets/images/secure-precious-metals-vault.webp",
-  contact: "/assets/images/luxury-commodity-trading-headquarters.webp",
-}

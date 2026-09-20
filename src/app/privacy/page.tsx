@@ -1,93 +1,68 @@
 import type { Metadata } from "next"
 import { ScrollReveal } from "@/components/ScrollReveal"
-import { company } from "@/lib/siteData"
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: `Privacy policy for ${company.name}. How we collect, use and protect your information.`,
+  description:
+    "AL AIN Metals privacy policy. We do not sell inquiry data. All client information is held under strict NDA.",
+  alternates: {
+    canonical: "https://alainmetalscorp.com/privacy",
+  },
 }
 
 export default function PrivacyPage() {
   return (
-    <section className="bg-black min-h-screen">
-      <div className="section-rule" />
-      <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-10 py-16 sm:py-24">
-        <ScrollReveal>
-          <div className="flex items-center gap-4 mb-8">
-            <div className="gold-divider" />
-            <span className="editorial-caption text-gold/70 text-[10px]">Legal</span>
-          </div>
-          <h1 className="font-serif font-light tracking-[-0.03em] text-white mb-4" style={{ fontSize: "clamp(1.75rem, 5vw, 3.5rem)", lineHeight: 0.95 }}>
-            Privacy <span className="text-gradient-gold">Policy</span>
-          </h1>
-          <p className="text-white/40 text-xs mb-12">Last updated: July 2026</p>
-        </ScrollReveal>
+    <>
+      <section className="pt-28 sm:pt-32 pb-16 bg-black-deep relative">
+        <div className="container-luxury">
+          <ScrollReveal>
+            <span className="editorial-caption text-gold/70 block mb-4">Legal</span>
+            <h1 className="editorial-headline-sm mb-6">
+              Privacy Policy
+            </h1>
+            <div className="gold-divider mb-8" />
+            <div className="max-w-2xl space-y-8">
+              {[
+                {
+                  title: "Data Collection",
+                  text: "We collect only the information necessary to process your enquiry and verify your identity as required by applicable regulations.",
+                },
+                {
+                  title: "Data Use",
+                  text: "Your information is used exclusively for processing your enquiry, compliance verification, and ongoing communication regarding your engagement.",
+                },
+                {
+                  title: "No Data Sale",
+                  text: "We do not sell inquiry data. All client information is held under strict NDA.",
+                },
+                {
+                  title: "Data Security",
+                  text: "All client data is stored using industry-standard encryption and security measures.",
+                },
+                {
+                  title: "Regulatory Retention",
+                  text: "We retain records as required by applicable AML/KYC regulations and Tanzanian law.",
+                },
+                {
+                  title: "GDPR & CCPA",
+                  text: "We respect your data protection rights under GDPR, CCPA, and applicable Tanzanian data protection legislation.",
+                },
+                {
+                  title: "Contact",
+                  text: "For privacy-related inquiries, contact: privateclients@alainmetalscorp.com",
+                },
+              ].map((section) => (
+                <div key={section.title}>
+                  <h2 className="text-cream text-sm tracking-[0.15em] uppercase mb-3">{section.title}</h2>
+                  <p className="text-gray-300 text-sm leading-relaxed">{section.text}</p>
+                </div>
+              ))}
 
-        <ScrollReveal delay={0.1}>
-          <div className="space-y-8 text-white/65 text-sm leading-relaxed">
-            <div>
-              <h2 className="text-white font-serif text-lg mb-3">1. Information We Collect</h2>
-              <p className="mb-3">
-                When you submit an inquiry through our Trade Assistant or contact form, we collect:
-              </p>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                <li>Company name, registration number and website</li>
-                <li>Contact name, email, phone and position</li>
-                <li>Client type and country</li>
-                <li>Commodity interest and quantity</li>
-                <li>UTM parameters, page URL and timestamp</li>
-              </ul>
+              <p className="text-gray-500 text-[11px]">Last updated: 2025.</p>
             </div>
-
-            <div>
-              <h2 className="text-white font-serif text-lg mb-3">2. How We Use Your Information</h2>
-              <p className="mb-3">We use your information to:</p>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                <li>Process and respond to your inquiry</li>
-                <li>Qualify your requirements</li>
-                <li>Communicate regarding your inquiry</li>
-                <li>Improve our services</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-white font-serif text-lg mb-3">3. Data Protection</h2>
-              <p>
-                Your data is transmitted over encrypted connections (TLS). We do not sell, rent or share your personal information with third parties for marketing purposes. Information is retained only as long as necessary to process your inquiry.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-white font-serif text-lg mb-3">4. Cookies &amp; Analytics</h2>
-              <p>
-                We may use essential cookies for site functionality. Analytics data is collected in aggregate form and does not personally identify you.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-white font-serif text-lg mb-3">5. Your Rights</h2>
-              <p className="mb-3">You have the right to:</p>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                <li>Access the personal data we hold about you</li>
-                <li>Request correction or deletion of your data</li>
-                <li>Withdraw consent at any time</li>
-                <li>Lodge a complaint with a supervisory authority</li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-white font-serif text-lg mb-3">6. Contact</h2>
-              <p>
-                For privacy-related inquiries, contact us at{" "}
-                <a href={`mailto:${company.email}`} className="text-gold hover:text-gold-light transition-colors">
-                  {company.email}
-                </a>
-                .
-              </p>
-            </div>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
+          </ScrollReveal>
+        </div>
+      </section>
+    </>
   )
 }

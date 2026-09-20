@@ -1,35 +1,26 @@
-import { Hero } from "@/components/sections/Hero"
-import { TrustBadges } from "@/components/sections/TrustBadges"
-import { AboutSection } from "@/components/sections/AboutSection"
-import { ProductsSection } from "@/components/sections/ProductsSection"
-import { ServicesSection } from "@/components/sections/ServicesSection"
-import { IndustriesWeServe } from "@/components/sections/IndustriesWeServe"
-import { WhyChooseUs } from "@/components/sections/WhyChooseUs"
-import { InstitutionalBuyers } from "@/components/sections/InstitutionalBuyers"
-import { ExportProcess } from "@/components/sections/ExportProcess"
-import { GlobalMarkets } from "@/components/sections/GlobalMarkets"
-import { Gallery } from "@/components/sections/Gallery"
-import { FAQSection } from "@/components/sections/FAQSection"
-import { ContactSection } from "@/components/sections/ContactSection"
+import { HeroSection } from "@/components/sections/HeroSection"
+import { PrivateClientIntro } from "@/components/sections/PrivateClientIntro"
+import { GoldPreview } from "@/components/sections/GoldPreview"
+import { GemstonesPreview } from "@/components/sections/GemstonesPreview"
+import { HowItWorksPreview } from "@/components/sections/HowItWorksPreview"
+import { TrustPreview } from "@/components/sections/TrustPreview"
+import { CtaSection } from "@/components/sections/CtaSection"
+import { FaqSection } from "@/components/FaqSection"
 import { JsonLd } from "@/components/JsonLd"
+import { homepageFaqs } from "@/lib/aeoContent"
 
 export default function HomePage() {
   return (
     <>
-      <JsonLd />
-      <Hero />
-      <TrustBadges />
-      <AboutSection />
-      <ProductsSection />
-      <ServicesSection />
-      <IndustriesWeServe />
-      <WhyChooseUs />
-      <InstitutionalBuyers />
-      <ExportProcess />
-      <GlobalMarkets />
-      <Gallery />
-      <FAQSection />
-      <ContactSection />
+      <JsonLd faqs={homepageFaqs} pageName="AL AIN Metals — Private Access to African Gold & Rare Gemstones" pageDescription="Direct access to African gold and rare gemstones for private clients. Independently assayed gold, GIA/GRS certified gemstones, Lloyd's-insured logistics." pageUrl="https://alainmetalscorp.com" />
+      <HeroSection />
+      <PrivateClientIntro />
+      <GoldPreview />
+      <GemstonesPreview />
+      <HowItWorksPreview />
+      <TrustPreview />
+      <FaqSection faqs={homepageFaqs} />
+      <CtaSection />
     </>
   )
 }

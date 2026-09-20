@@ -1,17 +1,15 @@
 "use client"
 
-import { useRef, ReactNode } from "react"
-import { motion, useInView } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
 
 interface ScrollRevealProps {
-  children: ReactNode
+  children: React.ReactNode
   className?: string
   delay?: number
   duration?: number
   direction?: "up" | "down" | "left" | "right" | "none"
   distance?: number
   once?: boolean
-  as?: "div" | "section" | "article" | "span"
 }
 
 export function ScrollReveal({
@@ -20,34 +18,49 @@ export function ScrollReveal({
   delay = 0,
   duration = 0.7,
   direction = "up",
-  distance = 48,
+  distance = 24,
   once = true,
-  as = "div",
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once, margin: "-60px" })
+  const [isVisible, setIsVisible] = useState(false)
 
-  const offset = { x: 0, y: 0 }
-  if (direction === "up") offset.y = distance
-  else if (direction === "down") offset.y = -distance
-  else if (direction === "left") offset.x = distance
-  else if (direction === "right") offset.x = -distance
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
 
-  const Tag = motion[as as keyof typeof motion] as React.ElementType
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay)
+          if (once) observer.unobserve(el)
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [delay, once])
+
+  const transforms: Record<string, string> = {
+    up: `translateY(${isVisible ? 0 : distance}px)`,
+    down: `translateY(${isVisible ? 0 : -distance}px)`,
+    left: `translateX(${isVisible ? 0 : distance}px)`,
+    right: `translateX(${isVisible ? 0 : -distance}px)`,
+    none: "none",
+  }
 
   return (
-    <Tag
+    <div
       ref={ref}
-      initial={{ opacity: 0, ...offset }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...offset }}
-      transition={{
-        duration,
-        delay,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
       className={className}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: transforms[direction],
+        transition: `opacity ${duration}s cubic-bezier(0.25, 0.1, 0.25, 1), transform ${duration}s cubic-bezier(0.25, 0.1, 0.25, 1)`,
+      }}
     >
       {children}
-    </Tag>
+    </div>
   )
 }

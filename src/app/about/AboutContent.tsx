@@ -1,120 +1,115 @@
 "use client"
 
-import { ScrollReveal } from "@/components/ScrollReveal"
-import { company } from "@/lib/siteData"
 import Link from "next/link"
+import { ScrollReveal } from "@/components/ScrollReveal"
+import { Breadcrumb } from "@/components/Breadcrumb"
 
 export function AboutContent() {
   return (
-    <div className="pt-28 lg:pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-        <ScrollReveal className="text-center mb-16 lg:mb-20">
-          <span className="inline-block text-[11px] tracking-[0.3em] uppercase text-gold mb-5 font-medium">
-            About Us
-          </span>
-          <h1 className="text-[clamp(2.2rem,4.5vw,3.8rem)] font-light leading-[1.1] mb-6">
-            About{" "}
-            <span className="text-gradient-gold font-semibold">
-              {company.shortName}
-            </span>
-          </h1>
-          <div className="gold-divider mx-auto" />
-        </ScrollReveal>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 mb-24">
+    <>
+      {/* Hero */}
+      <section className="pt-28 sm:pt-32 pb-16 bg-black-deep relative">
+        <div className="container-luxury">
           <ScrollReveal>
-            <div>
-              <h2 className="text-2xl font-semibold text-white mb-6 font-serif">
-                Our Company
-              </h2>
-              <p className="text-white/95 text-base lg:text-lg leading-[1.7] mb-6 font-light">
-                {company.name} is a Tanzania-based company specialising in the
-                export of gold and precious metals. We serve international gold
-                buyers, bullion dealers, refineries, investors, and jewellery
-                manufacturers worldwide.
-              </p>
-              <p className="text-white/95 text-base lg:text-lg leading-[1.7] mb-6 font-light">
-                Founded on the principles of integrity, transparency, and
-                reliability, we bridge the gap between East Africa&apos;s rich
-                mineral resources and the global gold market.
-              </p>
-              <p className="text-white/95 text-base lg:text-lg leading-[1.7] mb-6 font-light">
-                Our team combines local expertise with international trade
-                standards to provide a professional export experience. We work
-                with vetted partners and maintain due diligence throughout our
-                supply chain.
-              </p>
-            </div>
+            <Breadcrumb items={[{ label: "About" }]} />
+            <span className="editorial-caption text-gold/70 block mb-4">Our Story</span>
+            <h1 className="editorial-headline-sm mb-4">
+              Rooted in Africa.<br />Trusted Worldwide.
+            </h1>
           </ScrollReveal>
+        </div>
+      </section>
 
-          <ScrollReveal delay={0.15}>
-            <div className="glass-card rounded-3xl p-8 lg:p-10">
-              <h3 className="text-lg font-semibold text-white mb-6 font-serif">
-                Core Values
-              </h3>
-              <div className="space-y-6">
-                {[
-                  {
-                    title: "Integrity",
-                    desc: "We conduct our business with honesty and transparency, building lasting relationships with our clients and partners.",
-                  },
-                  {
-                    title: "Excellence",
-                    desc: "We maintain the highest standards in quality control, documentation, and service delivery.",
-                  },
-                  {
-                    title: "Compliance",
-                    desc: "We adhere strictly to all applicable laws, regulations, and international trade guidelines.",
-                  },
-                  {
-                    title: "Reliability",
-                    desc: "We deliver on our commitments with consistency and professionalism.",
-                  },
-                ].map((value) => (
-                  <div key={value.title} className="flex gap-4">
-                    <div className="w-1.5 h-1.5 bg-gold rounded-full mt-2.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-white font-medium mb-1">{value.title}</p>
-                      <p className="text-white/95 text-sm lg:text-base leading-[1.7] font-light">{value.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+      {/* African Landscape */}
+      <section className="relative h-[50vh] sm:h-[60vh] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(/assets/images/african-gold-mining-operations.webp)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black-deep via-transparent to-black/30" />
+      </section>
+
+      {/* Story */}
+      <section className="section-pad bg-black-deep relative">
+        <div className="container-luxury">
+          <ScrollReveal>
+            <div className="max-w-2xl mx-auto text-center">
+              <p className="editorial-subhead text-cream/80 mb-6">
+                AL AIN Metals is a Tanzanian-based company dedicated to connecting exceptional African precious metals and gemstones with private clients around the world.
+              </p>
+              <p className="editorial-subhead">
+                Our mission is to provide direct, verified access to Africa&apos;s finest natural resources — with integrity, transparency, and professionalism at every stage.
+              </p>
             </div>
           </ScrollReveal>
         </div>
+      </section>
 
-        <ScrollReveal>
-          <div className="glass-card rounded-3xl p-10 lg:p-14 text-center">
-            <h2 className="text-2xl font-semibold text-white mb-8 font-serif">
-              Track Record
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-              <div>
-                <p className="text-[32px] font-bold text-gradient-gold font-sans">Est.</p>
-                <p className="text-white/80 text-sm mt-1 font-light">Established Company</p>
-              </div>
-              <div>
-                <p className="text-[32px] font-bold text-gradient-gold font-sans">Multi</p>
-                <p className="text-white/80 text-sm mt-1 font-light">Country Sourcing</p>
-              </div>
-              <div>
-                <p className="text-[32px] font-bold text-gradient-gold font-sans">Global</p>
-                <p className="text-white/80 text-sm mt-1 font-light">Reach</p>
-              </div>
-            </div>
+      {/* Pillars */}
+      <section className="pb-16 bg-black-deep">
+        <div className="container-luxury">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
+            {[
+              {
+                title: "Integrity",
+                subtitle: "Our Foundation",
+                desc: "We uphold the highest standards of honesty and ethical conduct in every engagement.",
+              },
+              {
+                title: "Quality",
+                subtitle: "Our Standard",
+                desc: "Every precious metal and gemstone is independently verified for purity and authenticity.",
+              },
+              {
+                title: "Clients",
+                subtitle: "Our Focus",
+                desc: "We serve private clients with the discretion, professionalism and personal attention they deserve.",
+              },
+            ].map((pillar, i) => (
+              <ScrollReveal key={pillar.title} delay={i * 100}>
+                <div className="text-center">
+                  <h3 className="text-cream text-base sm:text-lg font-light mb-1">{pillar.title}</h3>
+                  <p className="text-gold/60 text-[10px] tracking-[0.2em] uppercase mb-3">{pillar.subtitle}</p>
+                  <p className="text-gray-400 text-xs leading-relaxed">{pillar.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
-        </ScrollReveal>
+        </div>
+      </section>
 
-        <ScrollReveal className="mt-12 text-center">
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gold text-black font-semibold text-sm uppercase tracking-[0.15em] rounded-sm hover:bg-gold-light transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-gold/30"
-          >
-            Start a Conversation
-          </Link>
-        </ScrollReveal>
-      </div>
-    </div>
+      {/* Tagline */}
+      <section className="py-16 bg-black relative">
+        <div className="section-rule absolute top-0 left-0 right-0" />
+        <div className="container-luxury text-center">
+          <ScrollReveal>
+            <div className="gold-divider-wide mx-auto mb-6" />
+            <p className="text-cream/60 text-xs tracking-[0.2em] uppercase mb-2">
+              African Heritage.
+            </p>
+            <p className="text-gold/60 text-xs tracking-[0.2em] uppercase">
+              Global Opportunity.
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-pad bg-black-deep relative">
+        <div className="section-rule absolute top-0 left-0 right-0" />
+        <div className="container-luxury text-center">
+          <ScrollReveal>
+            <Link href="/inquire" className="btn-primary">
+              Our Story
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+    </>
   )
 }

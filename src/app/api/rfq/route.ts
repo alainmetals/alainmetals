@@ -1,26 +1,29 @@
 import { NextRequest, NextResponse } from "next/server"
 
-interface RFQPayload {
-  inquiryType: string
-  commodity: string
-  quantity: string
-  buyerType: string
-  country: string
-  name: string
-  phone: string
+interface InquirePayload {
+  type: string
+  fullName: string
+  companyName: string
   email: string
+  phone: string
+  clientType: string
+  allocationSize: string
+  assetOfInterest: string[]
+  vaultLocation: string
   message: string
-  rfqReference: string
-  honeypot: string
-  formStartedAt: number
+  directBuyer: boolean
+  agreeNDA: boolean
 }
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const DISPOSABLE_DOMAINS = ["tempmail.com", "throwaway.com", "guerrillamail.com", "mailinator.com", "yopmail.com"]
+const DISPOSABLE_DOMAINS = [
+  "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "live.com",
+  "aol.com", "icloud.com", "mail.com", "protonmail.com", "zoho.com",
+  "yandex.com", "gmx.com", "fastmail.com",
+]
 const MAX_INPUT_LENGTH = 500
 const RATE_LIMIT_WINDOW = 60_000
 const RATE_LIMIT_MAX = 5
-const MIN_FORM_TIME = 3_000
 
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
 
@@ -58,12 +61,12 @@ function isDisposableEmail(email: string): boolean {
   return DISPOSABLE_DOMAINS.includes(domain)
 }
 
-function generateRFQReference(): string {
+function generateReference(): string {
   const now = new Date()
   const year = now.getFullYear().toString().slice(-2)
   const month = (now.getMonth() + 1).toString().padStart(2, "0")
   const random = Math.random().toString(36).substring(2, 7).toUpperCase()
-  return `AA-${year}${month}-${random}`
+  return `AMC-${year}${month}-${random}`
 }
 
 export async function POST(request: NextRequest) {
@@ -77,86 +80,75 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const body: RFQPayload = await request.json()
+    const body: InquirePayload = await request.json()
 
-    if (body.honeypot) {
-      return NextResponse.json({ success: true, rfqReference: generateRFQReference() })
+    if (!body.fullName?.trim()) {
+      return NextResponse.json({ error: "Full name is required." }, { status: 400 })
     }
 
-    if (body.formStartedAt) {
-      const elapsed = Date.now() - body.formStartedAt
-      if (elapsed < MIN_FORM_TIME) {
-        return NextResponse.json(
-          { error: "Please take a moment to review your inquiry." },
-          { status: 400 }
-        )
-      }
+    if (!body.companyName?.trim()) {
+      return NextResponse.json({ error: "Company name is required." }, { status: 400 })
     }
 
-    if (!body.name?.trim()) {
+    if (!body.email?.trim() || !EMAIL_REGEX.test(body.email)) {
+      return NextResponse.json({ error: "Valid corporate email is required." }, { status: 400 })
+    }
+
+    if (isDisposableEmail(body.email)) {
       return NextResponse.json(
-        { error: "Name is required." },
+        { error: "Please use a corporate or institutional email domain." },
         { status: 400 }
       )
     }
 
-    if (!body.phone?.trim() && !body.email?.trim()) {
+    if (!body.phone?.trim()) {
+      return NextResponse.json({ error: "Phone number is required." }, { status: 400 })
+    }
+
+    if (!body.clientType || !body.allocationSize || !body.vaultLocation) {
+      return NextResponse.json({ error: "Please complete all required fields." }, { status: 400 })
+    }
+
+    if (!body.directBuyer) {
       return NextResponse.json(
-        { error: "Phone or email is required." },
+        { error: "You must confirm you are a direct buyer or authorized representative." },
         { status: 400 }
       )
     }
 
-    if (body.email?.trim() && !EMAIL_REGEX.test(body.email)) {
+    if (!body.agreeNDA) {
       return NextResponse.json(
-        { error: "Invalid email address." },
+        { error: "You must agree to NDA and KYC procedures." },
         { status: 400 }
       )
     }
 
-    if (body.email?.trim() && isDisposableEmail(body.email)) {
-      return NextResponse.json(
-        { error: "Please use a corporate email address." },
-        { status: 400 }
-      )
-    }
-
-    if (!body.inquiryType || !body.commodity || !body.quantity || !body.buyerType || !body.country) {
-      return NextResponse.json(
-        { error: "Please complete all required steps." },
-        { status: 400 }
-      )
-    }
-
-    const sanitized = {
-      inquiryType: sanitize(body.inquiryType),
-      commodity: sanitize(body.commodity),
-      quantity: sanitize(body.quantity),
-      buyerType: sanitize(body.buyerType),
-      country: sanitize(body.country),
-      name: sanitize(body.name),
-      phone: sanitize(body.phone || ""),
-      email: sanitize(body.email || ""),
+    const record = {
+      type: "private-client-inquiry",
+      fullName: sanitize(body.fullName),
+      companyName: sanitize(body.companyName),
+      email: sanitize(body.email),
+      phone: sanitize(body.phone),
+      clientType: sanitize(body.clientType),
+      allocationSize: sanitize(body.allocationSize),
+      assetOfInterest: body.assetOfInterest.map(sanitize),
+      vaultLocation: sanitize(body.vaultLocation),
       message: sanitize(body.message || ""),
-    }
-
-    const rfqRecord = {
-      ...sanitized,
-      rfqReference: generateRFQReference(),
+      reference: generateReference(),
       submittedAt: new Date().toISOString(),
       clientIp: ip,
       status: "new",
     }
 
-    console.log("[RFQ_SUBMISSION]", JSON.stringify(rfqRecord, null, 2))
+    console.log("[PRIVATE_CLIENT_INQUIRY]", JSON.stringify(record, null, 2))
 
     return NextResponse.json({
       success: true,
-      rfqReference: rfqRecord.rfqReference,
-      message: "RFQ submitted successfully. Our trading desk will respond within 24 hours.",
+      reference: record.reference,
+      message: "Your inquiry has been routed to our Private Client Relations team. Response within 48 business hours.",
     })
   } catch (error) {
-    console.error("[RFQ_ERROR]", error)
+    console.error("[INQUIRY_ERROR]", error)
     return NextResponse.json(
       { error: "An error occurred. Please try again." },
       { status: 500 }
