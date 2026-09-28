@@ -25,12 +25,25 @@ export function Footer() {
                 <p className="text-gray-500 text-[10px] tracking-[0.15em] uppercase mb-1">
                   Call/WhatsApp
                 </p>
-                <a
-                  href={`tel:${company.phone.replace(/\s/g, "")}`}
-                  className="text-gold/70 text-[11px] hover:text-gold transition-colors"
-                >
-                  {company.phoneDisplay}
-                </a>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <a
+                    href={`tel:${company.phone.replace(/\s/g, "")}`}
+                    className="text-gold/70 text-[11px] hover:text-gold transition-colors"
+                  >
+                    {company.phoneDisplay}
+                  </a>
+                  <span aria-hidden="true" className="text-gray-600 text-[11px]">
+                    |
+                  </span>
+                  <a
+                    href={`https://wa.me/${company.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gold/70 text-[11px] hover:text-gold transition-colors"
+                  >
+                    WhatsApp
+                  </a>
+                </div>
               </div>
               <div>
                 <p className="text-gray-500 text-[10px] tracking-[0.15em] uppercase mb-1">
