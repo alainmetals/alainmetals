@@ -19,14 +19,30 @@ export function Footer() {
             <p className="text-gray-400 text-xs leading-relaxed max-w-xs mb-5">
               {company.description}
             </p>
-            <div className="space-y-1.5">
+            <div className="space-y-3">
               <p className="text-gray-400 text-[11px]">{company.address}</p>
-              <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="text-gold/70 text-[11px] hover:text-gold transition-colors">
-                {company.phoneDisplay}
-              </a>
-              <a href={`mailto:${company.email}`} className="text-gold/70 text-[11px] hover:text-gold transition-colors break-all">
-                {company.email}
-              </a>
+              <div>
+                <p className="text-gray-500 text-[10px] tracking-[0.15em] uppercase mb-1">
+                  Call/WhatsApp
+                </p>
+                <a
+                  href={`tel:${company.phone.replace(/\s/g, "")}`}
+                  className="text-gold/70 text-[11px] hover:text-gold transition-colors"
+                >
+                  {company.phoneDisplay}
+                </a>
+              </div>
+              <div>
+                <p className="text-gray-500 text-[10px] tracking-[0.15em] uppercase mb-1">
+                  Email
+                </p>
+                <a
+                  href={`mailto:${company.email}`}
+                  className="text-gold/70 text-[11px] hover:text-gold transition-colors break-all"
+                >
+                  {company.email}
+                </a>
+              </div>
             </div>
           </div>
 
