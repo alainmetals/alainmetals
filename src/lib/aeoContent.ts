@@ -6,7 +6,7 @@ export const businessFacts = {
   tagline: "Private Access to African Gold & Rare Gemstones",
   location: "Dar es Salaam, Tanzania",
   phone: "+255 652 979 692",
-  email: "privateclients@alainmetalscorp.com",
+  email: "info@alainmetalscorp.com",
   website: "https://alainmetalscorp.com",
   founded: "Tanzania-based",
   minimumAllocation: "$250,000",

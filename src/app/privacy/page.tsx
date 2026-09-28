@@ -62,7 +62,7 @@ export default function PrivacyPage() {
                 },
                 {
                   title: "Contact",
-                  text: "For privacy-related inquiries, contact: privateclients@alainmetalscorp.com",
+                  text: "For privacy-related inquiries, contact: info@alainmetalscorp.com",
                 },
               ].map((section) => (
                 <div key={section.title}>

@@ -6,7 +6,7 @@ export const company = {
   phone: "+255 652 979 692",
   phoneDisplay: "+255 652 979 692",
   whatsapp: "255652979692",
-  email: "privateclients@alainmetalscorp.com",
+  email: "info@alainmetalscorp.com",
   address: "Dar es Salaam, Tanzania",
   description:
     "AL AIN Metals provides direct access to African gold and rare gemstones for private clients. The company serves ultra-high-net-worth individuals, family offices, private bank desks, and sovereign allocators with independently assayed gold (99.5%–99.99% purity), GIA/GRS certified gemstones, Lloyd's-insured logistics, and secure vaulting in Dubai, Singapore, and Geneva.",
