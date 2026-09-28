@@ -37,9 +37,23 @@ const nextConfig: NextConfig = {
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+        ],
+      },
+      {
+        source: "/:path((?!_next/|assets/|favicon).*)",
+        headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400",
+            value: "public, max-age=0, s-maxage=0, must-revalidate",
+          },
+        ],
+      },
+      {
+        source: "/assets/video/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
