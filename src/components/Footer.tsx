@@ -23,7 +23,10 @@ export function Footer() {
             </p>
             <div className="space-y-1.5">
               <p className="text-gray-400 text-[11px]">{company.address}</p>
-              <a href={`mailto:${company.email}`} className="text-gold/70 text-[11px] hover:text-gold transition-colors">
+              <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="text-gold/70 text-[11px] hover:text-gold transition-colors">
+                {company.phoneDisplay}
+              </a>
+              <a href={`mailto:${company.email}`} className="text-gold/70 text-[11px] hover:text-gold transition-colors break-all">
                 {company.email}
               </a>
             </div>
